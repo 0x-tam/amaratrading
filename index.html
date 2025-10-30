@@ -998,15 +998,10 @@ if (quoteForm) {
 
 <script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
 <script>
-  var wa_btnSetting = {"btnColor":"#16BE45","ctaText":"Request more info","cornerRadius":40,"marginBottom":20,"marginLeft":20,"marginRight":20,"btnPosition":"right","whatsAppNumber":"9613996116","welcomeMessage":"Hello","zIndex":999999,"btnColorScheme":"light"};
-  window.addEventListener('load', function(){
+  var wa_btnSetting = {"btnColor":"#16BE45","ctaText":"Request more info","cornerRadius":40,"marginBottom":20,"marginLeft":20,"marginRight":20,"btnPosition":"right","whatsAppNumber":"9613116996","welcomeMessage":"Hello","zIndex":999999,"btnColorScheme":"light"};
+  window.onload = () => {
     if (typeof _waEmbed === 'function') { _waEmbed(wa_btnSetting); }
-  });
-  document.addEventListener('visibilitychange', function(){
-    if (document.visibilityState === 'visible' && typeof _waEmbed === 'function') { _waEmbed(wa_btnSetting); }
-  });
-  setTimeout(function(){ if (typeof _waEmbed === 'function') { _waEmbed(wa_btnSetting); } }, 2000);
-  
+  };
 </script>
 
 </body>
