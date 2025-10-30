@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Amara Group - Leading supplier of phosphate rock for agriculture and chemical production. Premium quality minerals with integrated logistics.">
+  <title>Amara Group | Phosphate Rock Supply & Logistics</title>
+  <style>
+  :root{
+    --navy:#0b1b2b;
+    --ink:#1e293b;
+    --muted:#667085;
+    --gold:#d4a019;
+    --paper:#ffffff;
+    --bg:#f7f8fa;
+    --transition:all 0.3s ease;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  body{font:16px/1.65 Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);overflow-x:hidden}
+  a{color:inherit;text-decoration:none;transition:var(--transition)}
+  .container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+  /* Header */
+  header{backdrop-filter:saturate(140%) blur(10px);background:rgba(255,255,255,.95);border-bottom:1px solid rgba(2,6,23,.08);position:sticky;top:0;z-index:1000;transition:var(--transition);will-change:transform}
+  header.hide{transform:translateY(-100%)}
+  header.scrolled{box-shadow:0 4px 12px rgba(0,0,0,.08)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .logo{font-weight:900;letter-spacing:.06em;color:var(--navy);text-transform:uppercase;font-size:1.2rem}
+  .menu{display:flex;align-items:center;gap:0}
+  .menu a{margin-left:24px;font-weight:600;color:#0f172a;position:relative;padding:8px 0}
+  .menu a::after{content:"";position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:var(--transition)}
+  .menu a:hover::after{width:100%}
+  .menu a:hover{color:var(--navy)}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+  .hamburger span{width:28px;height:3px;background:var(--navy);transition:var(--transition);border-radius:2px}
+  .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(8px,8px)}
+  .hamburger.active span:nth-child(2){opacity:0}
+  .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(8px,-8px)}
+.logo img{height:48px;display:block}
+
+  /* HERO as background image behind text */
+  .hero{position:relative;min-height:68vh;display:flex;align-items:center;color:#fff;isolation:isolate;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.6),rgba(0,0,0,.4) 35%,rgba(0,0,0,.6)),url('https://i.ibb.co/nqRtDY05/heavy-machinery-at-mine.jpg') center/cover no-repeat;z-index:-1;animation:fadeIn 1s ease}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  .hero .container{display:grid;grid-template-columns:1fr;gap:32px;align-items:center;animation:slideUp 0.8s ease}
+  @keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+  .hero h1{font-size:clamp(32px,4.6vw,56px);line-height:1.1;margin:0 0 12px;font-weight:900}
+  .hero p{margin:0 0 24px;max-width:720px;color:#e6e9ee;font-size:clamp(16px,1.5vw,18px)}
+  .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-block;background:var(--gold);color:#0b0f19;padding:14px 24px;border-radius:12px;font-weight:800;transition:var(--transition);border:none;cursor:pointer}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(212,160,25,.3)}
+  .btn.alt{background:rgba(255,255,255,.98);color:#0b1b2b}
+  .btn.alt:hover{background:rgba(255,255,255,1);box-shadow:0 8px 20px rgba(0,0,0,.15)}
+
+  /* Alternating rows */
+  section{padding:72px 0;scroll-margin-top:0;position:relative;background:var(--bg)}
+  section:not(.hero):nth-child(even){background:#0b1b2b;color:#fff}
+  section:not(.hero):nth-child(even) h2{color:#fff}
+  section:not(.hero):nth-child(even) h3{color:#fff}
+  section:not(.hero):nth-child(even) .lead{color:#cbd5e1}
+  section:not(.hero):nth-child(even) p{color:#e2e8f0}
+  section:not(.hero):nth-child(even) ul li{color:#e2e8f0}
+  section:not(.hero):nth-child(even) .product-card-main{background:#1e293b;border-color:rgba(255,255,255,.1)}
+  section:not(.hero):nth-child(even) .product-card-main:hover{background:#243447}
+  section:not(.hero):nth-child(even) h2{color:#fff !important}
+  section:not(.hero):nth-child(even) .product-specs-box{background:#0f172a}
+  section:not(.hero):nth-child(even) .product-description p{color:#cbd5e1}
+  section:not(.hero):nth-child(even) .spec-label{color:#94a3b8}
+  section:not(.hero):nth-child(even) .spec-number{color:#fff}
+  section:not(.hero):nth-child(even) .shipping-map{background:#1e293b;border-color:rgba(255,255,255,.1)}
+  section:not(.hero):nth-child(even) .shipping-stats .stat-box{background:#0f172a;border-color:rgba(255,255,255,.1)}
+  section:not(.hero):nth-child(even) .stat-number{color:#fff}
+  section:not(.hero):nth-child(even) .stat-label{color:#94a3b8}
+  section:not(.hero)::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,0,0,.08) 50%,transparent);pointer-events:none}
+  section:not(.hero):nth-child(even)::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,.1) 50%,transparent)}
+  .row{display:grid;grid-template-columns:1fr;gap:48px;align-items:center}
+  .text{padding:0;display:flex;flex-direction:column;justify-content:center}
+  h2{margin:0 0 18px;font-size:clamp(28px,3.2vw,42px);color:#0b1b2b;letter-spacing:.02em;font-weight:900;line-height:1.2}
+  .lead{margin:0 0 20px 0;color:var(--muted);font-size:clamp(16px,1.5vw,18px);line-height:1.7}
+  p{line-height:1.7;margin:0 0 16px;font-size:clamp(15px,1.3vw,16px)}
+  /* Consistent heading spacing */
+  .text h2{margin-bottom:16px}
+  .text h3{margin:16px 0 8px}
+  .text h2 + .lead, .text h2 + p, .text h3 + p, .text h3 + .lead{margin-top:6px}
+  .media{border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(2,6,23,.15);transition:var(--transition);min-height:400px}
+  .media:hover{transform:translateY(-5px);box-shadow:0 15px 50px rgba(2,6,23,.25)}
+  .media img{display:block;width:100%;height:100%;min-height:400px;object-fit:cover;transition:var(--transition)}
+  .media:hover img{transform:scale(1.08)}
+  ul{margin:0 0 0 24px;padding:0;line-height:2}
+  ul li{margin-bottom:10px}
+  h3{font-size:1.5rem;color:#0b1b2b;margin:24px 0 12px;font-weight:700}
+  .text h3{color:#0b1b2b}
+  .muted{color:var(--muted)}
+  
+  /* Cards */
+  .card{background:#fff;padding:24px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.08);transition:var(--transition);border-left:4px solid var(--gold)}
+  .card:hover{box-shadow:0 8px 30px rgba(0,0,0,.12)}
+  .card h3{font-size:1.5rem;margin:0 0 12px;color:var(--navy)}
+  .card p{margin-bottom:12px}
+  
+  /* Products */
+  .products-wrapper{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;align-items:stretch}
+  @media(min-width:768px){.products-wrapper{grid-template-columns:repeat(2,1fr);gap:24px}}
+  @media(max-width:767px){.products-wrapper{grid-template-columns:1fr}}
+  .product-card-main{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:20px;transition:var(--transition);border-top:3px solid var(--gold);display:flex;flex-direction:column;min-height:280px}
+  .product-card-main:hover{box-shadow:0 4px 20px rgba(0,0,0,.08);transform:translateY(-2px)}
+  .product-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+  .product-card-header > div{display:flex;align-items:center;gap:12px}
+  .product-card-header h3{margin:0;font-size:1.3rem;font-weight:900;color:var(--navy)}
+  .badge{background:var(--gold);color:#0b0f19;padding:5px 10px;border-radius:5px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
+  .product-card-header .btn{padding:8px 18px;font-size:0.8rem}
+  .btn-quote{background:#0b1b2b;color:#fff;padding:8px 18px;font-size:0.8rem}
+  .btn-quote:hover{background:#1a2938;box-shadow:0 4px 12px rgba(11,27,43,.3)}
+  .product-specs-box{background:#f7f8fa;border-radius:8px;padding:14px;margin-bottom:12px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;align-items:start}
+  .spec-item{display:flex;flex-direction:column;gap:6px}
+  .spec-label{color:var(--muted);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.3px;line-height:1.2}
+  .spec-label sub{font-size:0.65em;vertical-align:baseline;line-height:0;position:relative;bottom:-0.2em}
+  .spec-number{color:var(--navy);font-weight:700;font-size:0.95rem;line-height:1.3;white-space:nowrap}
+  .product-description{padding:0;flex-grow:1;display:flex;flex-direction:column;justify-content:flex-start}
+  .product-description p{margin:0;font-size:0.9rem;line-height:1.55;color:#1e293b}
+  .product-description p:last-child{margin-bottom:0}
+  .product-card-main .btn{padding:8px 16px;font-size:0.8rem}
+  .product-actions{margin-top:auto;display:flex;gap:12px;flex-wrap:wrap}
+  /* Make products row single-column so cards span full width */
+  #products .row{grid-template-columns:1fr}
+  #products .text{text-align:center}
+  #products h2{margin-bottom:20px}
+  #products .media{margin-top:32px;max-width:900px;margin-left:auto;margin-right:auto;height:320px;overflow:hidden;border-radius:16px}
+  #products .media img{width:100%;height:100%;object-fit:cover;object-position:center}
+
+  /* Contact Modal */
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:1100}
+  .modal-overlay.active{display:flex}
+  .modal{background:#fff;border-radius:16px;max-width:720px;width:92%;box-shadow:0 20px 60px rgba(2,6,23,.25);overflow:hidden}
+  .modal-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(2,6,23,.08)}
+  .modal-header h3{margin:0;color:#0b1b2b}
+  .modal-close{background:transparent;border:none;font-size:20px;cursor:pointer;color:#334155}
+  .modal-body{padding:20px}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+  .form-group label{font-size:0.9rem;color:#334155;font-weight:600}
+  .form-group input,.form-group select,.form-group textarea{border:1px solid #e2e8f0;border-radius:10px;padding:12px 12px;font:inherit}
+  .form-group textarea{min-height:120px;resize:vertical}
+  .helper{font-size:0.8rem;color:#64748b}
+  .actions{display:flex;gap:12px;justify-content:flex-end;margin-top:8px}
+  .btn.secondary{background:#e2e8f0;color:#0b1b2b}
+  @media(max-width:767px){.form-row{grid-template-columns:1fr}}
+
+  /* Contact */
+  .contact{background:linear-gradient(135deg,#0b1220 0%,#1a2535 100%);color:#fff}
+  .contact h2{color:#fff}
+  .contact a{color:#fff;text-decoration:underline;text-decoration-color:var(--gold)}
+  .contact a:hover{color:var(--gold)}
+  .contact p{margin-bottom:12px;font-size:1.1rem}
+  .contact strong{display:block;margin-bottom:4px;color:var(--gold);font-weight:700}
+  /* Reduce dead space before map heading */
+  #global-shipping .text{margin-bottom:16px !important}
+
+  /* Request Quote - center content */
+  #request-quote .text{text-align:center}
+  #request-quote .container{display:grid;justify-items:center}
+  #request-quote .card{width:min(680px,100%);margin:16px auto !important}
+  /* Visually centered accent for the form card */
+  #request-quote .card{border-left:0;border-top:4px solid var(--gold)}
+  /* Prevent hover shift on request form */
+  #request-quote .card:hover{transform:none}
+  /* Tighter form spacing */
+  #request-quote .form-group{margin-bottom:10px}
+  #request-quote .form-group label{margin-bottom:2px}
+
+  footer{background:#ffffff;color:#667085;text-align:center;padding:24px;border-top:1px solid rgba(2,6,23,.08)}
+  
+  /* Global Shipping Map */
+  .shipping-map{background:#fff;padding:40px;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+  .map-container{background:linear-gradient(135deg,#e8f4f8 0%,#f0f8fa 100%);padding:32px;border-radius:12px;overflow:hidden}
+  .world-map{width:100%;height:auto;stroke:#d1d5db;fill:none}
+  .port{animation:pulse 2s ease-in-out infinite}
+  .port-origin{filter:drop-shadow(0 2px 8px rgba(212,160,25,.4))}
+  .port-destination{filter:drop-shadow(0 2px 4px rgba(102,112,133,.3))}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+  .shipping-stats .stat-box{text-align:center;padding:24px;background:#f7f8fa;border-radius:12px;border:1px solid rgba(0,0,0,.05)}
+  .stat-number{font-size:2rem;font-weight:900;color:var(--navy);margin-bottom:8px}
+  .stat-label{font-size:0.9rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px}
+  
+  /* Scroll to Top Button */
+  .scroll-top{position:fixed;bottom:32px;right:32px;background:var(--gold);color:#0b0f19;border:none;border-radius:50%;width:50px;height:50px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;transition:var(--transition);box-shadow:0 4px 16px rgba(212,160,25,.3);z-index:999}
+  .scroll-top:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(212,160,25,.4)}
+  .scroll-top.visible{opacity:1;visibility:visible}
+  @media(max-width:767px){.scroll-top{bottom:24px;right:24px;width:44px;height:44px}}
+  
+  /* Responsive */
+  @media(min-width:768px){
+    .row{grid-template-columns:1.1fr 1.3fr;gap:60px}
+    .row.reverse>.media{order:1}
+    .row.reverse>.text{order:2}
+    .hero .container{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:767px){
+    body{font-size:15px;line-height:1.6;overflow-x:hidden}
+    header{height:auto}
+    .nav{height:64px}
+    .logo img{height:40px}
+    .menu{position:fixed;top:64px;right:-100%;width:100%;height:calc(100vh - 64px);background:rgba(255,255,255,.98);flex-direction:column;align-items:flex-start;padding:28px 18px;transition:var(--transition);box-shadow:-4px 0 12px rgba(0,0,0,.1);backdrop-filter:blur(10px)}
+    .menu.active{right:0}
+    .menu a{width:100%;padding:14px 0;border-bottom:1px solid rgba(0,0,0,.05);margin:0}
+    .hamburger{display:flex}
+    section{padding:36px 0}
+    .row{gap:28px}
+    .media{border-radius:12px;min-height:200px;margin-top:18px}
+    .media img{min-height:200px}
+    .hero{min-height:50vh}
+    header .menu a::after{display:none}
+    .products-wrapper{gap:14px}
+    .product-card-main{padding:14px}
+    .product-card-header h3{font-size:1rem;margin-bottom:6px;line-height:1.25;font-weight:800;text-align:left}
+    .product-card-main .btn{flex-direction:column;gap:12px}
+    .product-card-main .btn{width:100%}
+    .product-specs-box{padding:10px;grid-template-columns:1fr;gap:8px}
+    .spec-item{gap:4px}
+    .spec-label{font-size:0.78rem}
+    .spec-number{font-size:0.9rem;white-space:normal}
+    .product-description p{font-size:0.9rem;line-height:1.6}
+    .shipping-map{padding:10px}
+    .map-container{padding:10px}
+    .stat-number{font-size:1.45rem}
+    .container{padding:0 14px}
+    h2{font-size:clamp(28px,7vw,34px);margin:0 0 16px;line-height:1.12;font-weight:900;letter-spacing:.01em;text-align:left}
+    .text h3{font-size:clamp(20px,5vw,24px);margin:10px 0 8px;font-weight:900;color:#0b1b2b;text-align:left}
+    .lead{color:#64748b;font-size:14.5px;text-align:left}
+    section .text h2 + .lead{margin-top:4px}
+    .row, .products-wrapper{overflow-x:hidden}
+    #products .media{height:220px;margin-top:20px}
+    #products .media img{height:100%}
+    #products h2{margin-bottom:20px}
+    .text h2{margin-bottom:16px}
+    .text h3{margin:14px 0 8px}
+    .text h2 + .lead, .text h2 + p, .text h3 + p, .text h3 + .lead{margin-top:6px}
+    /* Port Operations: place media below text on mobile */
+    #port .row.reverse>.text{order:1}
+    #port .row.reverse>.media{order:2}
+    /* Contact centered */
+    #contact .text, #contact h2, #contact p, #contact strong{ text-align:center }
+    /* Request quote centered */
+    #request-quote .text{ text-align:center }
+    #request-quote .card{ max-width:760px; margin:16px auto 0 auto }
+  }
+  @media(min-width:1024px){
+    .row{gap:64px}
+    .media{min-height:450px}
+    .media img{min-height:450px}
+    #products .media{height:280px}
+    #products .media img{height:100%}
+  }
+  @media(min-width:1280px){
+    .row{gap:72px}
+    .media{min-height:500px}
+    .media img{min-height:500px}
+    .row{grid-template-columns:1fr 1.4fr}
+    #products .media{height:340px}
+    #products .media img{height:100%}
+  }
+  @media(max-width:480px){
+    section{padding:34px 0}
+    .container{padding:0 12px}
+    .hero{min-height:46vh}
+    .btn{padding:12px 16px;font-size:0.95rem}
+    .scroll-top{right:78px;bottom:84px;width:42px;height:42px}
+    .product-card-main{padding:12px}
+    .product-specs-box{padding:8px}
+    h2{font-size:24px}
+    .text h3{font-size:18px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo"><img src="https://i.ibb.co/twLsyyG6/Untitled-design-20.png" alt="Amara Group"></div>
+    <button class="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="menu" role="navigation">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#products">Products</a>
+      <a href="#request-quote">Request Quote</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section id="home" class="hero">
+  <div class="container">
+    <div class="text">
+      <h1>Supplying Purity. Supporting Growth.</h1>
+      <p>Amara Group is a trusted leader in the supply and trade of high-quality phosphate rock. We support agriculture and chemical production by delivering premium phosphate resources that sustain growth and innovation worldwide.</p>
+      <div class="cta">
+        <a class="btn" href="#products">Products</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="row">
+      <div class="text">
+        <h2>Who We Are</h2>
+        <p class="lead">Amara Group's mission is to be a trusted leader in the supply and trade of high-quality raw materials, with a focus on phosphate rock. We aim to support industries like agriculture and chemical production by providing premium phosphate resources that sustain growth and innovation.</p>
+        
+        <h3>Our Operations</h3>
+        <p>Our operations span the full supply chain — mining, trucking, and maritime transport — ensuring efficiency, reliability, and excellence. We source phosphate rock with exceptional purity and solubility characteristics, managed through a fully integrated logistics network.</p>
+        
+        <h3>Our Values</h3>
+        <p>We prioritize transparency, quality assurance, and mutual success. We build long-term partnerships with fertilizer producers, agricultural businesses, and international buyers, committed to global food security and industrial advancement.</p>
+        
+        <h3>Quality Philosophy</h3>
+        <p>Quality is our standard, not a promise. Through strict quality control, technical rigor, and responsive customer support, we deliver phosphate products that meet international standards and ensure sustainable results.</p>
+      </div>
+      <div class="media">
+        <img src="https://i.ibb.co/2393KF64/Male-worker-next-to-bulldozer-and-truck.jpg" alt="Male worker next to bulldozer and truck">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="products">
+  <div class="container">
+    <div class="row">
+      <div class="text">
+        <h2>Our Products</h2>
+        
+        <div class="products-wrapper">
+          <div class="product-card-main">
+            <div class="product-card-header">
+              <h3>Phosphate Rock – Grade G4</h3>
+            </div>
+            
+            <div class="product-specs-box">
+              <div class="spec-item">
+                <span class="spec-label">P<sub>2</sub>O<sub>5</sub></span>
+                <span class="spec-number">29.3% – 30.2%</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">BPL</span>
+                <span class="spec-number">64% – 66%</span>
+              </div>
+            </div>
+            
+            <div class="product-description">
+              <p>Grade G4 phosphate rock offers high purity and consistent composition, making it ideal for the production of high-grade phosphoric acid and compound fertilizers. Its elevated P<sub>2</sub>O<sub>5</sub> levels ensure strong reactivity and improved yield efficiency in both agricultural and industrial processing. Material is screened, low in impurities, and suitable for direct acidulation or further beneficiation.</p>
+            </div>
+          </div>
+
+          <div class="product-card-main">
+            <div class="product-card-header">
+              <h3>Phosphate Rock – Grade G6</h3>
+            </div>
+            
+            <div class="product-specs-box">
+              <div class="spec-item">
+                <span class="spec-label">P<sub>2</sub>O<sub>5</sub></span>
+                <span class="spec-number">28.38% – 29.29%</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">BPL</span>
+                <span class="spec-number">62% – 63%</span>
+              </div>
+            </div>
+            
+            <div class="product-description">
+              <p>Grade G6 provides a stable and reliable phosphate source for blended fertilizers and general industrial use. It maintains uniform grain size and favorable solubility characteristics, allowing smooth handling and predictable reaction performance in phosphoric acid and fertilizer manufacturing operations.</p>
+            </div>
+          </div>
+
+          <div class="product-card-main">
+            <div class="product-card-header">
+              <h3>Zinc Trading</h3>
+            </div>
+            
+            <div class="product-description" style="margin-top:20px">
+              <p>We source and trade zinc for industrial applications with verified origin and full traceability. Our supply covers zinc ingots and concentrates meeting international standards (SHG 99.995% and equivalent). We ensure competitive pricing, regular availability, and quality control across each stage of logistics and inspection.</p>
+            </div>
+          </div>
+
+          <div class="product-card-main">
+            <div class="product-card-header">
+              <h3>Silica Trading</h3>
+            </div>
+            
+            <div class="product-description" style="margin-top:20px">
+              <p>We supply high-quality silica for glass, foundry, ceramics, and industrial processes. Material meets consistent particle size distribution and chemical composition standards. Our logistics network supports bulk and containerized shipments with reliable lead times and documentation compliance for export and manufacturing clients.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:20px; display:flex; justify-content:center">
+          <a class="btn" href="#request-quote">Request a Quote</a>
+        </div>
+      </div>
+      <div class="media">
+        <img src="https://i.ibb.co/WNWFb0jC/Trucks-moving-phosphates.jpg" alt="Trucks moving phosphates">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="global-shipping">
+  <div class="container">
+    <div class="text" style="text-align:center;margin-bottom:48px">
+      <h2>Global Shipping Network</h2>
+      <p class="lead">We serve customers worldwide with reliable phosphate rock shipments from Mediterranean ports to destinations across the globe.</p>
+    </div>
+    
+    <div class="shipping-map" id="globalMap">
+      <style>
+        #globalMap{background:#0a0f14;border-radius:16px;padding:0;overflow:hidden;position:relative}
+        #globalMap .wrap{height:100%;display:grid;grid-template-rows:1fr;min-height:560px}
+        #globalMap #map{position:relative;min-height:460px}
+        #globalMap .brand{position:absolute; top:12px; left:12px; display:flex; align-items:center; gap:8px; padding:8px 10px; border-radius:10px; background:rgba(0,0,0,.4); border:1px solid rgba(255,255,255,.14); backdrop-filter: blur(4px); box-shadow:0 0 18px rgba(255,215,102,.35); z-index:2}
+        #globalMap .brand img{height:28px; width:auto; display:block; filter: drop-shadow(0 0 6px rgba(255,215,102,.7));}
+        #globalMap .brand .brandname{font-weight:600; font-size:13px; color:#f8f8f8}
+        #globalMap .callout{display:none}
+        #globalMap .highlight{position:absolute; left:50%; bottom:10px; transform:translateX(-50%); background:rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.15); padding:8px 12px; border-radius:10px; font-size:13px; letter-spacing:.2px; backdrop-filter:blur(4px); font-weight:600; color:#cfe0ea; max-width:86%}
+        #globalMap .highlight strong{color:#ffd766}
+        #globalMap .legend{position:absolute; bottom:12px; right:12px; background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.12); padding:10px 12px; border-radius:10px; font-size:12px; line-height:1.35; backdrop-filter: blur(4px); color:#cfe0ea}
+        #globalMap .legend .row{display:flex; align-items:center; gap:8px; margin:4px 0;}
+        #globalMap .legend svg{display:block}
+        #globalMap .legend .title{font-weight:600; margin-bottom:4px}
+        #globalMap .ocean{fill:#081018}
+        #globalMap .graticule{fill:none;stroke:#112532;stroke-opacity:.45;stroke-width:.35}
+        #globalMap .land{fill:#0f1d26;stroke:#1e3845;stroke-width:.35}
+        #globalMap .route{fill:none;stroke-linecap:round;stroke-linejoin:round; filter:url(#softGlow)}
+        #globalMap .office-tip{position:absolute;display:none;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.15);padding:6px 8px;border-radius:6px;font-size:12px;letter-spacing:.2px;backdrop-filter:blur(4px);font-weight:600;color:#cfe0ea;pointer-events:none;z-index:3}
+        @media(max-width:767px){
+        #globalMap .wrap{min-height:260px}
+        #globalMap #map{min-height:220px}
+        #globalMap .legend{right:8px; bottom:8px; font-size:10px; padding:6px 8px}
+          #globalMap .office-tip{font-size:11px; padding:5px 7px}
+          #globalMap .highlight{display:none}
+        }
+      </style>
+      <div class="wrap">
+        <div id="map"></div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+      <script>
+      (function(){
+        const container = document.querySelector('#globalMap #map');
+        const width = container.clientWidth || 1100;
+        const height = container.clientHeight || 560;
+        const svg = d3.select(container).append('svg').attr('width', width).attr('height', height);
+        const defs = svg.append('defs');
+        const softGlow = defs.append('filter').attr('id','softGlow');
+        softGlow.append('feGaussianBlur').attr('stdDeviation',2.0).attr('result','b');
+        softGlow.append('feMerge').selectAll('feMergeNode').data(['b','SourceGraphic']).enter().append('feMergeNode').attr('in',d=>d);
+        // Neon stroke color
+        const neonColor = '#00f5ff';
+        const grad = defs.append('linearGradient').attr('id','routeGrad').attr('x1','0%').attr('x2','100%');
+        grad.append('stop').attr('offset','0%').attr('stop-color',neonColor);
+        grad.append('stop').attr('offset','100%').attr('stop-color',neonColor);
+        const scale = Math.min(width/(2*Math.PI), height/Math.PI);
+        const baseStroke = width < 768 ? 2.0 : 2.8;
+        const projection = d3.geoEquirectangular().scale(scale).translate([width/2, height/2]);
+        const path = d3.geoPath(projection);
+        const g = svg.append('g');
+        const gWater = g.append('g');
+        const gLand = g.append('g');
+        const gRoutes = g.append('g');
+        const gOffices = g.append('g');
+        gWater.append('rect').attr('class','ocean').attr('x',0).attr('y',0).attr('width',width).attr('height',height);
+        const HUB = { name:'Syria Office', coord:[36.2765, 33.5138] };
+        // Random world cities (excluding Israel)
+        const cities = [
+          {n:'Amman, Jordan', c:[35.9375, 31.9539]},
+          {n:'Cairo, Egypt', c:[31.2357, 30.0444]},
+          {n:'Alexandria, Egypt', c:[29.9187, 31.2001]},
+          {n:'Riyadh, Saudi Arabia', c:[46.6753, 24.7136]},
+          {n:'Jeddah, Saudi Arabia', c:[39.1979, 21.4858]},
+          {n:'Dubai, United Arab Emirates', c:[55.2708, 25.2048]},
+          {n:'Abu Dhabi, United Arab Emirates', c:[54.3773, 24.4539]},
+          {n:'Doha, Qatar', c:[51.5310, 25.2854]},
+          {n:'Manama, Bahrain', c:[50.5860, 26.2235]},
+          {n:'Kuwait City, Kuwait', c:[47.9783, 29.3759]},
+          {n:'Baghdad, Iraq', c:[44.3661, 33.3152]},
+          {n:'Tehran, Iran', c:[51.3890, 35.6892]},
+          {n:'Muscat, Oman', c:[58.4059, 23.5880]},
+          {n:'Ankara, Turkey', c:[32.8597, 39.9334]},
+          {n:'Istanbul, Turkey', c:[28.9784, 41.0082]},
+          {n:'Athens, Greece', c:[23.7275, 37.9838]},
+          {n:'Rome, Italy', c:[12.4964, 41.9028]},
+          {n:'Milan, Italy', c:[9.1900, 45.4642]},
+          {n:'Paris, France', c:[2.3522, 48.8566]},
+          {n:'Marseille, France', c:[5.3698, 43.2965]},
+          {n:'Madrid, Spain', c:[-3.7038, 40.4168]},
+          {n:'Barcelona, Spain', c:[2.1734, 41.3851]},
+          {n:'Lisbon, Portugal', c:[-9.1393, 38.7223]},
+          {n:'London, United Kingdom', c:[-0.1276, 51.5072]},
+          {n:'Rotterdam, Netherlands', c:[4.4792, 51.9244]},
+          {n:'Hamburg, Germany', c:[9.9937, 53.5511]},
+          {n:'Berlin, Germany', c:[13.4050, 52.5200]},
+          {n:'Stockholm, Sweden', c:[18.0686, 59.3293]},
+          {n:'Moscow, Russia', c:[37.6173, 55.7558]},
+          {n:'Warsaw, Poland', c:[21.0122, 52.2297]},
+          {n:'Bucharest, Romania', c:[26.1025, 44.4268]},
+          {n:'Nairobi, Kenya', c:[36.8219, -1.2921]},
+          {n:'Addis Ababa, Ethiopia', c:[38.7578, 8.9806]},
+          {n:'Lagos, Nigeria', c:[3.3792, 6.5244]},
+          {n:'Accra, Ghana', c:[-0.1869, 5.6037]},
+          {n:'Casablanca, Morocco', c:[-7.5898, 33.5731]},
+          {n:'Tunis, Tunisia', c:[10.1815, 36.8065]},
+          {n:'Johannesburg, South Africa', c:[28.0473, -26.2041]},
+          {n:'Karachi, Pakistan', c:[67.0099, 24.8615]},
+          {n:'Mumbai, India', c:[72.8777, 19.0760]},
+          {n:'Delhi, India', c:[77.1025, 28.7041]},
+          {n:'Dhaka, Bangladesh', c:[90.4125, 23.8103]},
+          {n:'Colombo, Sri Lanka', c:[79.8612, 6.9271]},
+          {n:'Bangkok, Thailand', c:[100.5018, 13.7563]},
+          {n:'Ho Chi Minh City, Vietnam', c:[106.6297, 10.8231]},
+          {n:'Singapore, Singapore', c:[103.8198, 1.3521]},
+          {n:'Jakarta, Indonesia', c:[106.8456, -6.2088]},
+          {n:'Kuala Lumpur, Malaysia', c:[101.6869, 3.1390]},
+          {n:'Manila, Philippines', c:[120.9842, 14.5995]},
+          {n:'Seoul, South Korea', c:[126.9780, 37.5665]},
+          {n:'Tokyo, Japan', c:[139.6917, 35.6895]},
+          {n:'Osaka, Japan', c:[135.5022, 34.6937]},
+          {n:'Sydney, Australia', c:[151.2093, -33.8688]},
+          {n:'Melbourne, Australia', c:[144.9631, -37.8136]},
+          {n:'Auckland, New Zealand', c:[174.7633, -36.8485]},
+          {n:'New York, USA', c:[-74.0060, 40.7128]},
+          {n:'Miami, USA', c:[-80.1918, 25.7617]},
+          {n:'Houston, USA', c:[-95.3698, 29.7604]},
+          {n:'Los Angeles, USA', c:[-118.2437, 34.0522]},
+          {n:'San Francisco, USA', c:[-122.4194, 37.7749]},
+          {n:'Seattle, USA', c:[-122.3321, 47.6062]},
+          {n:'Vancouver, Canada', c:[-123.1207, 49.2827]},
+          {n:'Montreal, Canada', c:[-73.5673, 45.5017]},
+          {n:'Mexico City, Mexico', c:[-99.1332, 19.4326]},
+          {n:'Panama City, Panama', c:[-79.5167, 8.9833]},
+          {n:'Bogotá, Colombia', c:[-74.0721, 4.7110]},
+          {n:'Lima, Peru', c:[-77.0428, -12.0464]},
+          {n:'Santiago, Chile', c:[-70.6693, -33.4489]},
+          {n:'Buenos Aires, Argentina', c:[-58.3816, -34.6037]},
+          {n:'São Paulo, Brazil', c:[-46.6333, -23.5505]},
+          {n:'Rio de Janeiro, Brazil', c:[-43.1729, -22.9068]},
+          {n:'Montevideo, Uruguay', c:[-56.1645, -34.9011]}
+        ];
+        const worldUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
+        d3.json(worldUrl).then(world => {
+          const land = topojson.feature(world, world.objects.countries);
+          gLand.selectAll('path').data(land.features).enter().append('path').attr('class','land').attr('d', path);
+          // Draw office icons on map (smaller, same style as legend)
+          const offices = [
+            { n: 'Syria', c: HUB.coord },
+            { n: 'Lebanon', c: [35.5018, 33.8938] },
+            { n: 'Oman', c: [58.4059, 23.5880] }
+          ];
+          const officeScale = width < 768 ? 0.8 : 1.0;
+          const officeSel = gOffices.selectAll('g.office').data(offices).enter().append('g')
+            .attr('class','office')
+            .attr('transform', d => `translate(${projection(d.c)[0]},${projection(d.c)[1]}) scale(${officeScale})`)
+            .style('filter','url(#softGlow)')
+            .style('cursor','pointer');
+          officeSel.append('path')
+            .attr('d','M -4 5 L 4 5 L 4 1 L 0 -2 L -4 1 Z')
+            .attr('fill','#9ad5ff')
+            .attr('stroke','#e6f6ff')
+            .attr('stroke-width',0.55)
+            .attr('opacity',0.95);
+          officeSel.append('circle')
+            .attr('cx',3.2).attr('cy',1.4).attr('r',0.8).attr('fill', '#00f5ff');
+          officeSel.append('title').text(d => `${d.n} Office`);
+          // custom tooltip
+          const tipHost = document.querySelector('#globalMap');
+          const tip = d3.select(tipHost).append('div').attr('class','office-tip');
+          officeSel
+            .on('mouseenter', function(event, d){ tip.style('display','block').text(`${d.n} Office`); })
+            .on('mousemove', function(event){
+              const r = tipHost.getBoundingClientRect();
+              const x = Math.max(4, Math.min(r.width - 140, event.clientX - r.left + 12));
+              const y = Math.max(4, Math.min(r.height - 60, event.clientY - r.top + 12));
+              tip.style('left', x + 'px').style('top', y + 'px');
+            })
+            .on('mouseleave', function(){ tip.style('display','none'); });
+          startRandomRouting();
+        });
+        function proj(ll){ return projection(ll); }
+        function bezierArc(p0ll, p1ll, curvature=0.22){
+          const p0 = proj(p0ll), p1 = proj(p1ll);
+          const x0=p0[0], y0=p0[1], x1=p1[0], y1=p1[1];
+          const dx = x1 - x0, dy = y1 - y0;
+          const d = Math.hypot(dx, dy) || 1;
+          const ux = dx/d, uy = dy/d;
+          let nx = -uy, ny = ux;
+          const k = curvature * d;
+          const c1x = x0 + dx*0.33 + nx * k;
+          const c1y = y0 + dy*0.33 + ny * k;
+          const c2x = x0 + dx*0.66 + nx * k*0.95;
+          const c2y = y0 + dy*0.66 + ny * k*0.95;
+          return `M${x0},${y0} C${c1x},${c1y} ${c2x},${c2y} ${x1},${y1}`;
+        }
+        let lastIndex = -1;
+        function pickRandomTarget(originCoord, originName){
+          if (cities.length <= 1) return cities[0];
+          let attempts = 0;
+          let idx = lastIndex;
+          let chosen = null;
+          while (attempts < 10){
+            idx = Math.floor(Math.random()*cities.length);
+            if (idx === lastIndex) { attempts++; continue; }
+            const p0 = projection(originCoord || HUB.coord);
+            const p1 = projection(cities[idx].c);
+            const distPix = Math.hypot(p1[0]-p0[0], p1[1]-p0[1]);
+            // Direction constraints by origin: Lebanon -> west, Oman -> east, Syria -> south
+            const goWest = p1[0] < p0[0] - 40;
+            const goEast = p1[0] > p0[0] + 40;
+            const goSouth = p1[1] > p0[1] + 20;
+            const dirOk = originName === 'Lebanon' ? goWest : (originName === 'Oman' ? goEast : goSouth);
+            if (distPix >= 140 && dirOk) { chosen = cities[idx]; break; }
+            attempts++;
+          }
+          if (!chosen){
+            // fallback to a different index even if close
+            do { idx = Math.floor(Math.random()*cities.length); } while (idx === lastIndex);
+            chosen = cities[idx];
+          }
+          lastIndex = idx;
+          return chosen;
+        }
+        let seq = 0; // unique id for masks per route
+        function startRandomRouting(){
+          const origins = [
+            { name:'Syria', coord: HUB.coord },
+            { name:'Lebanon', coord: [35.5018, 33.8938] },
+            { name:'Oman', coord: [58.4059, 23.5880] }
+          ];
+          origins.forEach(o => animateFrom(o));
+        }
+        function animateFrom(origin){
+          const target = pickRandomTarget(origin.coord, origin.name);
+          // Adapt curvature to distance for better aesthetics on short/long routes
+          const p0 = projection(origin.coord);
+          const p1 = projection(target.c);
+          const dx = p1[0]-p0[0], dy = p1[1]-p0[1];
+          const distPix = Math.hypot(dx, dy);
+          const curvature = distPix < 180 ? 0.28 : (distPix < 360 ? 0.22 : 0.18);
+          const d = bezierArc(origin.coord, target.c, curvature);
+          const pathSel = gRoutes.append('path')
+            .attr('class','route neon')
+            .attr('d', d)
+            .attr('fill','none')
+            .attr('stroke','url(#routeGrad)')
+            .attr('stroke-width', baseStroke)
+            .attr('stroke-linecap','round')
+            .style('filter','url(#softGlow)')
+            .attr('opacity', 0.0);
+          const len = pathSel.node().getTotalLength();
+          // Distance-adaptive dot density and speed
+          const isShort = distPix < 220;
+          const dot = isShort ? 1.8 : 2.0;
+          const gap = isShort ? Math.max(5, Math.min(10, Math.floor(len/70))) : Math.max(6, Math.min(12, Math.floor(len/60)));
+          const duration = isShort
+            ? Math.max(2400, Math.min(5200, Math.floor(len*11)))
+            : Math.max(2700, Math.min(7800, Math.floor(len*9.5)));
+          pathSel.attr('stroke-dasharray', `${dot} ${gap}`);
+          // Progressive reveal mask so destination isn't visible until reached
+          const id = `revealMask${++seq}`;
+          const mask = defs.append('mask').attr('id', id);
+          const reveal = mask.append('path')
+            .attr('d', d)
+            .attr('fill','none')
+            .attr('stroke','#fff')
+            .attr('stroke-linecap','round')
+            .attr('stroke-width', baseStroke * 1.9);
+          const mlen = pathSel.node().getTotalLength();
+          reveal
+            .attr('stroke-dasharray', `${mlen} ${mlen}`)
+            .attr('stroke-dashoffset', mlen);
+          pathSel.attr('mask', `url(#${id})`)
+            .transition()
+              .duration(420)
+              .ease(d3.easeCubicOut)
+              .attr('opacity', 0.94)
+              .on('end', function(){
+                // While revealing, animate dashoffset so dots flow smoothly
+                let flowing = true;
+                const step = dot + gap;
+                function loopFlow(){
+                  if (!flowing) return;
+                  d3.select(pathSel.node())
+                    .attr('stroke-dashoffset', 0)
+                    .transition()
+                      .duration(isShort ? 180 : 210)
+                      .ease(d3.easeLinear)
+                      .attr('stroke-dashoffset', -step)
+                      .on('end', loopFlow);
+                }
+                loopFlow();
+                reveal
+                  .transition()
+                    .duration(duration)
+                    .ease(isShort ? d3.easeCubicInOut : d3.easeCubicInOut)
+                    .attr('stroke-dashoffset', 0)
+                    .on('end', function(){
+                      flowing = false; // stop dot flow
+                      // Immediately start next from same origin, fade old concurrently
+                      animateFrom(origin);
+                      d3.select(pathSel.node())
+                        .transition()
+                          .duration(isShort ? 320 : 360)
+                          .ease(d3.easeCubicInOut)
+                          .attr('opacity', 0)
+                          .on('end', function(){
+                            d3.select(this).remove();
+                            // cleanup mask
+                            mask.remove();
+                          });
+                    });
+              });
+        }
+        function debounce(fn, wait){ let t; return (...args)=>{ clearTimeout(t); t=setTimeout(()=>fn.apply(this,args), wait); } }
+        window.addEventListener('resize', debounce(()=>location.reload(), 250));
+        const legend = document.createElement('div');
+        legend.className = 'legend';
+        legend.innerHTML = `
+          <div class="title">Legend</div>
+          <div class="row" title="Syria Office">
+            <svg width="16" height="16" viewBox="0 0 16 16" aria-label="Syria Office">
+              <path d="M 2 14 L 14 14 L 14 7 L 8 3 L 2 7 Z" fill="#9ad5ff" stroke="#e6f6ff" stroke-width=".7"/>
+              <circle cx="12.2" cy="7.8" r="1.1" fill="#00f5ff"/>
+            </svg>
+            <span>Syria Office</span>
+          </div>
+          <div class="row" title="Lebanon Office">
+            <svg width="16" height="16" viewBox="0 0 16 16" aria-label="Lebanon Office">
+              <path d="M 2 14 L 14 14 L 14 7 L 8 3 L 2 7 Z" fill="#9ad5ff" stroke="#e6f6ff" stroke-width=".7"/>
+              <circle cx="12.2" cy="7.8" r="1.1" fill="#00f5ff"/>
+            </svg>
+            <span>Lebanon Office</span>
+          </div>
+          <div class="row" title="Oman Office">
+            <svg width="16" height="16" viewBox="0 0 16 16" aria-label="Oman Office">
+              <path d="M 2 14 L 14 14 L 14 7 L 8 3 L 2 7 Z" fill="#b2f2bb" stroke="#d3f9d8" stroke-width=".7"/>
+              <circle cx="12.2" cy="7.8" r="1.1" fill="#00f5ff"/>
+            </svg>
+            <span>Oman Office</span>
+          </div>`;
+        document.querySelector('#globalMap').appendChild(legend);
+        const hl = document.createElement('div');
+        hl.className = 'highlight';
+        hl.innerHTML = `<span>We provide <strong>WORLDWIDE SHIPPING</strong> across all regions</span>`;
+        document.querySelector('#globalMap').appendChild(hl);
+      })();
+      </script>
+    </div>
+  </div>
+</section>
+
+<section id="logistics">
+  <div class="container">
+    <div class="row">
+      <div class="text">
+        <h2>Supply Chain Excellence</h2>
+        <p class="lead">Our end‑to‑end logistics ensure predictable delivery from mine to vessel while maintaining strict quality control throughout the entire supply chain.</p>
+        
+        <h3>Incoterms & Logistics</h3>
+        <p>Established mine-to-port network under government and private management. Available on FOB & CIF terms.</p>
+        
+        <h3>Quality Verification</h3>
+        <p>Independent inspection by SGS or equivalent to ensure product quality and consistency.</p>
+        
+        <h3>Shipment Volume</h3>
+        <p>Typical vessel capacity: 20,000–40,000 tons per shipment.</p>
+        
+        <h3>Additional Offer Details</h3>
+        <ul>
+          <li>Certificate of Origin issued by the Syrian government.</li>
+          <li>Site visits to the mine, port, and relevant authorities can be arranged post-contract.</li>
+          <li>Buyers must be fertilizer manufacturers or distributors and confirm agricultural end-use in writing, as required by export regulations.</li>
+        </ul>
+      </div>
+      <div class="media">
+        <img src="https://i.ibb.co/GQFqSGkf/logistics-showing-container-and-cargo.jpg" alt="logistics showing container and cargo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- duplicate global-shipping section removed -->
+
+<section id="port">
+  <div class="container">
+    <div class="row reverse">@
+      <div class="media">
+        <img src="https://i.ibb.co/kgrTT02g/loading-bulk-cargo-of-limestone-from-barges-into-a-bulk-carrier-by-using-ship-cranes-and-grabs-at-th.jpg" alt="loading bulk cargo into carrier hold">
+      </div>
+      <div class="text">
+        <h2>Port Operations</h2>
+        <p class="lead">Experienced in bulk handling at Mediterranean ports to ensure safe loading and fast vessel turnaround.</p>
+        <p>We coordinate stow plans, draft surveys, and sampling. Documentation and export facilitation are handled in‑house for speed and compliance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Request Quote Section -->
+<section id="request-quote">
+  <div class="container">
+    <div class="text">
+      <h2>Request a Quote</h2>
+      <p class="lead">Tell us what you need and our team will get back with pricing, availability, and logistics options.</p>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <form id="quoteForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="qname">Full Name</label>
+            <input type="text" id="qname" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="qcompany">Company</label>
+            <input type="text" id="qcompany" name="company">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="qemail">Email</label>
+            <input type="email" id="qemail" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="qphone">Phone</label>
+            <input type="tel" id="qphone" name="phone">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="qmessage">Message</label>
+          <textarea id="qmessage" name="message" placeholder="How can we help?"></textarea>
+        </div>
+        <div class="actions">
+          <button type="submit" class="btn">Send Inquiry</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="row">
+      <div class="text" style="background:transparent;border:0;box-shadow:none;color:#fff">
+        <h2 style="color:#fff">Contact Us</h2>
+        <p><strong>Lebanon • Syria • Oman</strong></p>
+        <p><strong>Phone Number:</strong> <a href="tel:+9613116996">+961 3-116-996</a></p>
+        <p><strong>Email:</strong> <a href="mailto:amara@amaratrading.co">amara@amaratrading.co</a></p>
+      </div>
+      <div class="media">
+        <img src="https://i.ibb.co/29Lr3Cm/large-truck-carrying-sand-from-mine.jpg" alt="large truck carrying sand from mine">
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Amara Group. All rights reserved.</p>
+</footer>
+
+<script>
+// Mobile menu toggle
+const hamburger = document.querySelector('.hamburger');
+const menu = document.querySelector('.menu');
+const navLinks = document.querySelectorAll('.menu a');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  menu.classList.toggle('active');
+  document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+});
+
+// Close menu when clicking on a link
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    menu.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+});
+
+// Header scroll effect
+const header = document.querySelector('header');
+let lastY = window.pageYOffset;
+let ticking = false;
+window.addEventListener('scroll', () => {
+  const currentY = window.pageYOffset;
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      const menuOpen = document.querySelector('.menu')?.classList.contains('active');
+      // header shadow state
+      if (currentY > 50) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+      // hide on scroll down, show on scroll up; never hide near top or when menu open
+      if (!menuOpen && currentY > 120 && currentY > lastY) {
+        header.classList.add('hide');
+      } else {
+        header.classList.remove('hide');
+      }
+      lastY = currentY;
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const id = this.getAttribute('href');
+    const target = document.querySelector(id);
+    if (target) {
+      const headerEl = document.querySelector('header');
+      const headerH = headerEl ? headerEl.offsetHeight : 0;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - headerH;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+
+// Scroll to Top Button
+const scrollTopBtn = document.getElementById('scrollTop');
+if (scrollTopBtn) {
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      scrollTopBtn.classList.add('visible');
+    } else {
+      scrollTopBtn.classList.remove('visible');
+    }
+  });
+}
+
+// Quote form submit (mailto)
+const quoteForm = document.getElementById('quoteForm');
+if (quoteForm) {
+  quoteForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = (document.getElementById('qname').value || '').trim();
+    const company = (document.getElementById('qcompany').value || '').trim();
+    const email = (document.getElementById('qemail').value || '').trim();
+    const phone = (document.getElementById('qphone').value || '').trim();
+    const message = (document.getElementById('qmessage').value || '').trim();
+
+    const subject = encodeURIComponent('Request for Quote');
+    const bodyLines = [
+      `Name: ${name}`,
+      `Company: ${company}`,
+      `Email: ${email}`,
+      `Phone: ${phone}`,
+      '',
+      message
+    ];
+    const body = encodeURIComponent(bodyLines.join('\n'));
+    const mailto = `mailto:contact@amaratrading.co?subject=${subject}&body=${body}`;
+    window.location.href = mailto;
+  });
+}
+</script>
+
+<!-- Scroll to Top Button -->
+<button id="scrollTop" class="scroll-top" aria-label="Scroll to top">
+  <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+  </svg>
+</button>
+
+
+<script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
+<script>
+  var wa_btnSetting = {"btnColor":"#16BE45","ctaText":"Request more info","cornerRadius":40,"marginBottom":20,"marginLeft":20,"marginRight":20,"btnPosition":"right","whatsAppNumber":"9613996116","welcomeMessage":"Hello","zIndex":999999,"btnColorScheme":"light"};
+  window.addEventListener('load', function(){
+    if (typeof _waEmbed === 'function') { _waEmbed(wa_btnSetting); }
+  });
+  document.addEventListener('visibilitychange', function(){
+    if (document.visibilityState === 'visible' && typeof _waEmbed === 'function') { _waEmbed(wa_btnSetting); }
+  });
+  setTimeout(function(){ if (typeof _waEmbed === 'function') { _waEmbed(wa_btnSetting); } }, 2000);
+  
+</script>
+
+</body>
+</html>
+
