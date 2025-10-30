@@ -138,6 +138,7 @@
   .product-description p:last-child{margin-bottom:0}
   .product-card-main .btn{padding:8px 16px;font-size:0.8rem}
   .product-actions{margin-top:auto;display:flex;gap:12px;flex-wrap:wrap}
+  .product-actions{justify-content:center}
   /* Make products row single-column so cards span full width */
   #products .row{grid-template-columns:1fr}
   #products .text{text-align:center}
@@ -394,6 +395,9 @@
             
             <div class="product-description">
               <p>Grade G6 provides a stable and reliable phosphate source for blended fertilizers and general industrial use. It maintains uniform grain size and favorable solubility characteristics, allowing smooth handling and predictable reaction performance in phosphoric acid and fertilizer manufacturing operations.</p>
+            </div>
+            <div class="product-actions">
+              <button type="button" class="btn secondary" id="btnTdsG6">View TDS</button>
             </div>
           </div>
 
@@ -992,28 +996,33 @@ if (quoteForm) {
   });
 }
 
-// TDS G4 modal open/close
-const tdsBtn = document.getElementById('btnTdsG4');
-const tdsOverlay = document.getElementById('tdsG4Overlay');
-if (tdsBtn && tdsOverlay) {
-  const tdsClose = tdsOverlay.querySelector('.modal-close');
-  tdsBtn.addEventListener('click', () => {
-    tdsOverlay.classList.add('active');
-    tdsOverlay.setAttribute('aria-hidden','false');
-  });
-  tdsOverlay.addEventListener('click', (e) => {
-    if (e.target === tdsOverlay) {
-      tdsOverlay.classList.remove('active');
-      tdsOverlay.setAttribute('aria-hidden','true');
-    }
-  });
-  if (tdsClose) {
-    tdsClose.addEventListener('click', () => {
-      tdsOverlay.classList.remove('active');
-      tdsOverlay.setAttribute('aria-hidden','true');
+// TDS modals - initialize after DOM is ready so overlays exist
+window.addEventListener('load', () => {
+  function wireTds(buttonId, overlayId){
+    const btn = document.getElementById(buttonId);
+    const overlay = document.getElementById(overlayId);
+    if (!btn || !overlay) return;
+    const closeBtn = overlay.querySelector('.modal-close');
+    btn.addEventListener('click', () => {
+      overlay.classList.add('active');
+      overlay.setAttribute('aria-hidden','false');
     });
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden','true');
+      }
+    });
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden','true');
+      });
+    }
   }
-}
+  wireTds('btnTdsG4', 'tdsG4Overlay');
+  wireTds('btnTdsG6', 'tdsG6Overlay');
+});
 </script>
 
 <!-- TDS Modal for G4 -->
@@ -1132,6 +1141,123 @@ if (tdsBtn && tdsOverlay) {
     </div>
   </div>
   
+</div>
+
+<!-- TDS Modal for G6 -->
+<div id="tdsG6Overlay" class="modal-overlay" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tdsG6Title">
+    <div class="modal-header">
+      <h3 id="tdsG6Title">Phosphate Rock Chemical Analysis (Type G6)</h3>
+      <button class="modal-close" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="card" style="border-top:0">
+        <h3 style="margin-top:0">Chemical Composition (on Dry Basis)</h3>
+        <div style="overflow-x:auto">
+          <table style="width:100%; border-collapse:collapse">
+            <thead>
+              <tr>
+                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Component</th>
+                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Formula</th>
+                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Range</th>
+                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Unit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:8px">Bone Phosphate Lime</td><td style="padding:8px">BPL</td><td style="padding:8px">64–66</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Phosphorus Pentoxide</td><td style="padding:8px">P<sub>2</sub>O<sub>5</sub></td><td style="padding:8px">29.29–30.21</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Calcium Oxide</td><td style="padding:8px">CaO</td><td style="padding:8px">48–50</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Iron Oxide</td><td style="padding:8px">Fe<sub>2</sub>O<sub>3</sub></td><td style="padding:8px">0.10–0.20</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Aluminum Oxide</td><td style="padding:8px">Al<sub>2</sub>O<sub>3</sub></td><td style="padding:8px">0.10–0.15</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Magnesium Oxide</td><td style="padding:8px">MgO</td><td style="padding:8px">0.50–0.80</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Silica Dioxide</td><td style="padding:8px">SiO<sub>2</sub></td><td style="padding:8px">7.5–9</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Fluorine</td><td style="padding:8px">F</td><td style="padding:8px">2–4</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Chlorine</td><td style="padding:8px">Cl</td><td style="padding:8px">800–1200</td><td style="padding:8px">ppm</td></tr>
+              <tr><td style="padding:8px">Carbon Oxide</td><td style="padding:8px">CO<sub>2</sub></td><td style="padding:8px">7–9</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Loss on Ignition</td><td style="padding:8px">L.O.I</td><td style="padding:8px">7–8</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Humidity</td><td style="padding:8px">H<sub>2</sub>O</td><td style="padding:8px">5–7</td><td style="padding:8px">%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card" style="border-top:0">
+        <h3>Minor Ingredients</h3>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px">
+          <div style="overflow-x:auto">
+            <table style="width:100%; border-collapse:collapse">
+              <thead>
+                <tr>
+                  <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Element</th>
+                  <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Range (ppm)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td style="padding:8px">Cu</td><td style="padding:8px">10–15</td></tr>
+                <tr><td style="padding:8px">U</td><td style="padding:8px">40–70</td></tr>
+                <tr><td style="padding:8px">Cd</td><td style="padding:8px">6–10</td></tr>
+                <tr><td style="padding:8px">As</td><td style="padding:8px">&lt;2</td></tr>
+                <tr><td style="padding:8px">Pb</td><td style="padding:8px">&lt;2</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="overflow-x:auto">
+            <table style="width:100%; border-collapse:collapse">
+              <thead>
+                <tr>
+                  <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Element</th>
+                  <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Range (ppm)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td style="padding:8px">Zn</td><td style="padding:8px">140–200</td></tr>
+                <tr><td style="padding:8px">Hg</td><td style="padding:8px">&lt;0.1</td></tr>
+                <tr><td style="padding:8px">V</td><td style="padding:8px">70–150</td></tr>
+                <tr><td style="padding:8px">Ni</td><td style="padding:8px">10–15</td></tr>
+                <tr><td style="padding:8px">Bi</td><td style="padding:8px">0.01–0.05</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="border-top:0">
+        <h3>Solubility</h3>
+        <div style="overflow-x:auto">
+          <table style="width:100%; border-collapse:collapse">
+            <thead>
+              <tr>
+                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Test</th>
+                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Solubility (%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:8px">P<sub>2</sub>O<sub>5</sub> in Citric Acid (2%)</td><td style="padding:8px">35–40</td></tr>
+              <tr><td style="padding:8px">P<sub>2</sub>O<sub>5</sub> in Formic Acid (2%)</td><td style="padding:8px">55–65</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card" style="border-top:0">
+        <h3>Typical Screen Analysis</h3>
+        <div style="overflow-x:auto">
+          <table style="width:100%; border-collapse:collapse">
+            <thead>
+              <tr>
+                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">ASTM Mesh No.</th>
+                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Micron</th>
+                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">% Passing</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:8px">+18</td><td style="padding:8px">+1000 µ</td><td style="padding:8px">4–6</td></tr>
+              <tr><td style="padding:8px">+35</td><td style="padding:8px">+500 µ</td><td style="padding:8px">5–10</td></tr>
+              <tr><td style="padding:8px">+230</td><td style="padding:8px">+40 µ</td><td style="padding:8px">70–80</td></tr>
+              <tr><td style="padding:8px">–230</td><td style="padding:8px">–40 µ</td><td style="padding:8px">5–7</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Scroll to Top Button -->
