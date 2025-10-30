@@ -739,7 +739,8 @@
               });
         }
         function debounce(fn, wait){ let t; return (...args)=>{ clearTimeout(t); t=setTimeout(()=>fn.apply(this,args), wait); } }
-        window.addEventListener('resize', debounce(()=>location.reload(), 250));
+        // Disable reload on resize to prevent flashing/reloads on mobile UI chrome changes
+        // window.addEventListener('resize', debounce(()=>location.reload(), 250));
         const legend = document.createElement('div');
         legend.className = 'legend';
         legend.innerHTML = `

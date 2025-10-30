@@ -738,7 +738,8 @@
               });
         }
         function debounce(fn, wait){ let t; return (...args)=>{ clearTimeout(t); t=setTimeout(()=>fn.apply(this,args), wait); } }
-        window.addEventListener('resize', debounce(()=>location.reload(), 250));
+        // Disable reload on resize to prevent flashing/reloads on mobile UI chrome changes
+        // window.addEventListener('resize', debounce(()=>location.reload(), 250));
         const legend = document.createElement('div');
         legend.className = 'legend';
         legend.innerHTML = `
@@ -996,7 +997,7 @@ if (quoteForm) {
 
 <script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
 <script>
-  var wa_btnSetting = {"btnColor":"#16BE45","ctaText":"Request more info","cornerRadius":40,"marginBottom":20,"marginLeft":20,"marginRight":20,"btnPosition":"right","whatsAppNumber":"9613996116","welcomeMessage":"Hello","zIndex":999999,"btnColorScheme":"light"};
+  var wa_btnSetting = {"btnColor":"#16BE45","ctaText":"Request more info","cornerRadius":40,"marginBottom":20,"marginLeft":20,"marginRight":20,"btnPosition":"right","whatsAppNumber":"9613116996","welcomeMessage":"Hello","zIndex":999999,"btnColorScheme":"light"};
   window.addEventListener('load', function(){
     if (typeof _waEmbed === 'function') { _waEmbed(wa_btnSetting); }
   });
