@@ -1005,7 +1005,19 @@ if (quoteForm) {
     ];
     const body = encodeURIComponent(bodyLines.join('\n'));
     const mailto = `mailto:contact@amaratrading.co?subject=${subject}&body=${body}`;
-    window.location.href = mailto;
+    // More reliable mailto trigger across browsers (including iOS)
+    const tmp = document.createElement('a');
+    tmp.href = mailto;
+    tmp.style.display = 'none';
+    document.body.appendChild(tmp);
+    tmp.click();
+    setTimeout(() => {
+      document.body.removeChild(tmp);
+      // Fallback navigation
+      if (document.visibilityState === 'visible') {
+        window.location.href = mailto;
+      }
+    }, 50);
   });
 }
 
