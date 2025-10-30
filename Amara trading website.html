@@ -853,6 +853,8 @@
     </div>
     <div class="card" style="margin-top:16px">
       <form id="quoteForm">
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+        <input type="hidden" name="subject" value="Website Inquiry">
         <div class="form-row">
           <div class="form-group">
             <label for="qname">Full Name</label>
@@ -982,41 +984,38 @@ if (scrollTopBtn) {
   });
 }
 
-// Quote form submit (mailto)
+// Quote form submit (Web3Forms)
 const quoteForm = document.getElementById('quoteForm');
 if (quoteForm) {
   quoteForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    const fd = new FormData(quoteForm);
+    // fallback subject if hidden not present
+    if (!fd.get('subject')) fd.set('subject', 'Website Inquiry');
+    // include a readable message bundle too
     const name = (document.getElementById('qname').value || '').trim();
     const company = (document.getElementById('qcompany').value || '').trim();
     const email = (document.getElementById('qemail').value || '').trim();
     const phone = (document.getElementById('qphone').value || '').trim();
-    const message = (document.getElementById('qmessage').value || '').trim();
+    const msg = (document.getElementById('qmessage').value || '').trim();
+    fd.set('from_name', name);
+    fd.set('replyto', email);
+    fd.set('message', [`Name: ${name}`, `Company: ${company}`, `Email: ${email}`, `Phone: ${phone}`, '', msg].join('\n'));
 
-    const subject = encodeURIComponent('Request for Quote');
-    const bodyLines = [
-      `Name: ${name}`,
-      `Company: ${company}`,
-      `Email: ${email}`,
-      `Phone: ${phone}`,
-      '',
-      message
-    ];
-  const body = encodeURIComponent(bodyLines.join('\n'));
-  const mailto = `mailto:contact@amaratrading.co?subject=${subject}&body=${body}`;
-  // More reliable mailto trigger across browsers (including iOS)
-  const tmp = document.createElement('a');
-  tmp.href = mailto;
-  tmp.style.display = 'none';
-  document.body.appendChild(tmp);
-  tmp.click();
-  setTimeout(() => {
-    document.body.removeChild(tmp);
-    // Fallback navigation
-    if (document.visibilityState === 'visible') {
-      window.location.href = mailto;
-    }
-  }, 50);
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: fd
+    }).then(async (res) => {
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && (data.success || data.message)) {
+        alert('Thank you! Your inquiry has been sent.');
+        quoteForm.reset();
+      } else {
+        alert('Could not send. Please replace YOUR_WEB3FORMS_ACCESS_KEY with your real key or try again.');
+      }
+    }).catch(() => {
+      alert('Network error while sending. Please try again.');
+    });
   });
 }
 
