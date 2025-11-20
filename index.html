@@ -152,9 +152,11 @@
   .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:1100}
   .modal-overlay.active{display:flex}
   .modal{background:#fff;border-radius:16px;max-width:900px;width:min(900px,92%);box-shadow:0 20px 60px rgba(2,6,23,.25);overflow:hidden;display:flex;flex-direction:column;max-height:70vh}
-  .modal-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(2,6,23,.08)}
-  .modal-header h3{margin:0;color:#0b1b2b}
-  .modal-close{background:transparent;border:none;font-size:20px;cursor:pointer;color:#334155}
+  .modal-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(2,6,23,.08);flex-wrap:wrap;gap:12px}
+  .modal-header h3{margin:0;color:#0b1b2b;flex:1;min-width:200px}
+  .modal-header > div{display:flex;align-items:center;gap:12px}
+  .modal-close{background:transparent;border:none;font-size:24px;cursor:pointer;color:#334155;line-height:1;padding:4px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:4px;transition:var(--transition)}
+  .modal-close:hover{background:rgba(0,0,0,.05);color:#0b1b2b}
   .modal-body{padding:24px;overflow:auto;max-height:calc(70vh - 60px)}
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
@@ -274,6 +276,11 @@
     .modal{max-height:55vh}
     .modal-body{max-height:calc(55vh - 56px)}
     .modal-body th,.modal-body td{font-size:12.5px}
+    .modal-header{flex-direction:column;align-items:stretch;gap:12px}
+    .modal-header h3{font-size:16px;min-width:auto}
+    .modal-header > div{justify-content:space-between;width:100%}
+    .modal-header .btn{font-size:0.8rem;padding:6px 12px}
+    .modal-header .btn svg{width:14px;height:14px;margin-right:4px}
   }
   @media(min-width:1024px){
     .row{gap:64px}
@@ -1051,8 +1058,146 @@ window.addEventListener('load', () => {
 <div id="tdsG4Overlay" class="modal-overlay" aria-hidden="true">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tdsG4Title">
     <div class="modal-header">
-      <h3 id="tdsG4Title">Phosphate Rock Chemical Analysis (Type G4)</h3>
-      <button class="modal-close" aria-label="Close">&times;</button>
+      <h3 id="tdsG4Title">Phosphate Rock Chemical Analysis (Type G6)</h3>
+      <div style="display:flex; gap:12px; align-items:center">
+        <button class="btn secondary" id="downloadTdsG4" style="padding:8px 16px; font-size:0.85rem" title="Download as PDF">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-right:6px">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Download PDF
+        </button>
+        <button class="modal-close" aria-label="Close">&times;</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="card" style="border-top:0">
+        <h3 style="margin-top:0">Chemical Composition (on Dry Basis)</h3>
+        <div style="overflow-x:auto">
+          <table style="width:100%; border-collapse:collapse">
+            <thead>
+              <tr>
+                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Component</th>
+                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Formula</th>
+                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Range</th>
+                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Unit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:8px">Bone Phosphate Lime</td><td style="padding:8px">BPL</td><td style="padding:8px">64–66</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Phosphorus Pentoxide</td><td style="padding:8px">P<sub>2</sub>O<sub>5</sub></td><td style="padding:8px">29.29–30.21</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Calcium Oxide</td><td style="padding:8px">CaO</td><td style="padding:8px">48–50</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Iron Oxide</td><td style="padding:8px">Fe<sub>2</sub>O<sub>3</sub></td><td style="padding:8px">0.10–0.20</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Aluminum Oxide</td><td style="padding:8px">Al<sub>2</sub>O<sub>3</sub></td><td style="padding:8px">0.10–0.15</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Magnesium Oxide</td><td style="padding:8px">MgO</td><td style="padding:8px">0.50–0.80</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Silica Dioxide</td><td style="padding:8px">SiO<sub>2</sub></td><td style="padding:8px">7.5–9</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Fluorine</td><td style="padding:8px">F</td><td style="padding:8px">2–4</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Chlorine</td><td style="padding:8px">Cl</td><td style="padding:8px">800–1200</td><td style="padding:8px">ppm</td></tr>
+              <tr><td style="padding:8px">Carbon Oxide</td><td style="padding:8px">CO<sub>2</sub></td><td style="padding:8px">7–9</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Loss on Ignition</td><td style="padding:8px">L.O.I</td><td style="padding:8px">7–8</td><td style="padding:8px">%</td></tr>
+              <tr><td style="padding:8px">Humidity</td><td style="padding:8px">H<sub>2</sub>O</td><td style="padding:8px">5–7</td><td style="padding:8px">%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card" style="border-top:0">
+        <h3>Minor Ingredients</h3>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px">
+          <div style="overflow-x:auto">
+            <table style="width:100%; border-collapse:collapse">
+              <thead>
+                <tr>
+                  <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Element</th>
+                  <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Range (ppm)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td style="padding:8px">Cu</td><td style="padding:8px">10–15</td></tr>
+                <tr><td style="padding:8px">U</td><td style="padding:8px">40–70</td></tr>
+                <tr><td style="padding:8px">Cd</td><td style="padding:8px">6–10</td></tr>
+                <tr><td style="padding:8px">As</td><td style="padding:8px">&lt;2</td></tr>
+                <tr><td style="padding:8px">Pb</td><td style="padding:8px">&lt;2</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="overflow-x:auto">
+            <table style="width:100%; border-collapse:collapse">
+              <thead>
+                <tr>
+                  <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Element</th>
+                  <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Range (ppm)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td style="padding:8px">Zn</td><td style="padding:8px">140–200</td></tr>
+                <tr><td style="padding:8px">Hg</td><td style="padding:8px">&lt;0.1</td></tr>
+                <tr><td style="padding:8px">V</td><td style="padding:8px">70–150</td></tr>
+                <tr><td style="padding:8px">Ni</td><td style="padding:8px">10–15</td></tr>
+                <tr><td style="padding:8px">Bi</td><td style="padding:8px">0.01–0.05</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="border-top:0">
+        <h3>Solubility</h3>
+        <div style="overflow-x:auto">
+          <table style="width:100%; border-collapse:collapse">
+            <thead>
+              <tr>
+                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Test</th>
+                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Solubility (%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:8px">P<sub>2</sub>O<sub>5</sub> in Citric Acid (2%)</td><td style="padding:8px">35–40</td></tr>
+              <tr><td style="padding:8px">P<sub>2</sub>O<sub>5</sub> in Formic Acid (2%)</td><td style="padding:8px">55–65</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card" style="border-top:0">
+        <h3>Typical Screen Analysis</h3>
+        <div style="overflow-x:auto">
+          <table style="width:100%; border-collapse:collapse">
+            <thead>
+              <tr>
+                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">ASTM Mesh No.</th>
+                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Micron</th>
+                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">% Passing</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:8px">+18</td><td style="padding:8px">+1000 µ</td><td style="padding:8px">3–5</td></tr>
+              <tr><td style="padding:8px">+35</td><td style="padding:8px">+500 µ</td><td style="padding:8px">5–10</td></tr>
+              <tr><td style="padding:8px">+230</td><td style="padding:8px">+40 µ</td><td style="padding:8px">70–80</td></tr>
+              <tr><td style="padding:8px">–230</td><td style="padding:8px">–40 µ</td><td style="padding:8px">5–7</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<!-- TDS Modal for G6 -->
+<div id="tdsG6Overlay" class="modal-overlay" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tdsG6Title">
+    <div class="modal-header">
+      <h3 id="tdsG6Title">Phosphate Rock Chemical Analysis (Type G6)</h3>
+      <div style="display:flex; gap:12px; align-items:center">
+        <button class="btn secondary" id="downloadTdsG6" style="padding:8px 16px; font-size:0.85rem" title="Download as PDF">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-right:6px">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Download PDF
+        </button>
+        <button class="modal-close" aria-label="Close">&times;</button>
+      </div>
     </div>
     <div class="modal-body">
       <div class="card" style="border-top:0">
@@ -1162,124 +1307,6 @@ window.addEventListener('load', () => {
       </div>
     </div>
   </div>
-  
-</div>
-
-<!-- TDS Modal for G6 -->
-<div id="tdsG6Overlay" class="modal-overlay" aria-hidden="true">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tdsG6Title">
-    <div class="modal-header">
-      <h3 id="tdsG6Title">Phosphate Rock Chemical Analysis (Type G6)</h3>
-      <button class="modal-close" aria-label="Close">&times;</button>
-    </div>
-    <div class="modal-body">
-      <div class="card" style="border-top:0">
-        <h3 style="margin-top:0">Chemical Composition (on Dry Basis)</h3>
-        <div style="overflow-x:auto">
-          <table style="width:100%; border-collapse:collapse">
-            <thead>
-              <tr>
-                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Component</th>
-                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Formula</th>
-                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Range</th>
-                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Unit</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td style="padding:8px">Bone Phosphate Lime</td><td style="padding:8px">BPL</td><td style="padding:8px">64–66</td><td style="padding:8px">%</td></tr>
-              <tr><td style="padding:8px">Phosphorus Pentoxide</td><td style="padding:8px">P<sub>2</sub>O<sub>5</sub></td><td style="padding:8px">29.29–30.21</td><td style="padding:8px">%</td></tr>
-              <tr><td style="padding:8px">Calcium Oxide</td><td style="padding:8px">CaO</td><td style="padding:8px">48–50</td><td style="padding:8px">%</td></tr>
-              <tr><td style="padding:8px">Iron Oxide</td><td style="padding:8px">Fe<sub>2</sub>O<sub>3</sub></td><td style="padding:8px">0.10–0.20</td><td style="padding:8px">%</td></tr>
-              <tr><td style="padding:8px">Aluminum Oxide</td><td style="padding:8px">Al<sub>2</sub>O<sub>3</sub></td><td style="padding:8px">0.10–0.15</td><td style="padding:8px">%</td></tr>
-              <tr><td style="padding:8px">Magnesium Oxide</td><td style="padding:8px">MgO</td><td style="padding:8px">0.50–0.80</td><td style="padding:8px">%</td></tr>
-              <tr><td style="padding:8px">Silica Dioxide</td><td style="padding:8px">SiO<sub>2</sub></td><td style="padding:8px">7.5–9</td><td style="padding:8px">%</td></tr>
-              <tr><td style="padding:8px">Fluorine</td><td style="padding:8px">F</td><td style="padding:8px">2–4</td><td style="padding:8px">%</td></tr>
-              <tr><td style="padding:8px">Chlorine</td><td style="padding:8px">Cl</td><td style="padding:8px">800–1200</td><td style="padding:8px">ppm</td></tr>
-              <tr><td style="padding:8px">Carbon Oxide</td><td style="padding:8px">CO<sub>2</sub></td><td style="padding:8px">7–9</td><td style="padding:8px">%</td></tr>
-              <tr><td style="padding:8px">Loss on Ignition</td><td style="padding:8px">L.O.I</td><td style="padding:8px">7–8</td><td style="padding:8px">%</td></tr>
-              <tr><td style="padding:8px">Humidity</td><td style="padding:8px">H<sub>2</sub>O</td><td style="padding:8px">5–7</td><td style="padding:8px">%</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="card" style="border-top:0">
-        <h3>Minor Ingredients</h3>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px">
-          <div style="overflow-x:auto">
-            <table style="width:100%; border-collapse:collapse">
-              <thead>
-                <tr>
-                  <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Element</th>
-                  <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Range (ppm)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td style="padding:8px">Cu</td><td style="padding:8px">10–15</td></tr>
-                <tr><td style="padding:8px">U</td><td style="padding:8px">40–70</td></tr>
-                <tr><td style="padding:8px">Cd</td><td style="padding:8px">6–10</td></tr>
-                <tr><td style="padding:8px">As</td><td style="padding:8px">&lt;2</td></tr>
-                <tr><td style="padding:8px">Pb</td><td style="padding:8px">&lt;2</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div style="overflow-x:auto">
-            <table style="width:100%; border-collapse:collapse">
-              <thead>
-                <tr>
-                  <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Element</th>
-                  <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Range (ppm)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td style="padding:8px">Zn</td><td style="padding:8px">140–200</td></tr>
-                <tr><td style="padding:8px">Hg</td><td style="padding:8px">&lt;0.1</td></tr>
-                <tr><td style="padding:8px">V</td><td style="padding:8px">70–150</td></tr>
-                <tr><td style="padding:8px">Ni</td><td style="padding:8px">10–15</td></tr>
-                <tr><td style="padding:8px">Bi</td><td style="padding:8px">0.01–0.05</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div class="card" style="border-top:0">
-        <h3>Solubility</h3>
-        <div style="overflow-x:auto">
-          <table style="width:100%; border-collapse:collapse">
-            <thead>
-              <tr>
-                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Test</th>
-                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Solubility (%)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td style="padding:8px">P<sub>2</sub>O<sub>5</sub> in Citric Acid (2%)</td><td style="padding:8px">35–40</td></tr>
-              <tr><td style="padding:8px">P<sub>2</sub>O<sub>5</sub> in Formic Acid (2%)</td><td style="padding:8px">55–65</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="card" style="border-top:0">
-        <h3>Typical Screen Analysis</h3>
-        <div style="overflow-x:auto">
-          <table style="width:100%; border-collapse:collapse">
-            <thead>
-              <tr>
-                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">ASTM Mesh No.</th>
-                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">Micron</th>
-                <th style="text-align:left; padding:8px; border-bottom:1px solid #e2e8f0">% Passing</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td style="padding:8px">+18</td><td style="padding:8px">+1000 µ</td><td style="padding:8px">4–6</td></tr>
-              <tr><td style="padding:8px">+35</td><td style="padding:8px">+500 µ</td><td style="padding:8px">5–10</td></tr>
-              <tr><td style="padding:8px">+230</td><td style="padding:8px">+40 µ</td><td style="padding:8px">70–80</td></tr>
-              <tr><td style="padding:8px">–230</td><td style="padding:8px">–40 µ</td><td style="padding:8px">5–7</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- Scroll to Top Button -->
@@ -1291,11 +1318,673 @@ window.addEventListener('load', () => {
 
 
 <script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
   var wa_btnSetting = {"btnColor":"#16BE45","ctaText":"Request more info","cornerRadius":40,"marginBottom":20,"marginLeft":20,"marginRight":20,"btnPosition":"right","whatsAppNumber":"9613116996","welcomeMessage":"Hello","zIndex":999999,"btnColorScheme":"light"};
   window.onload = () => {
     if (typeof _waEmbed === 'function') { _waEmbed(wa_btnSetting); }
   };
+
+  // PDF Download Functionality
+  function generatePDF(overlayId, title, filename) {
+    const overlay = document.getElementById(overlayId);
+    if (!overlay) {
+      alert('Error: Could not find the document content.');
+      return;
+    }
+    
+    const modalBody = overlay.querySelector('.modal-body');
+    if (!modalBody) {
+      alert('Error: Could not find the document content.');
+      return;
+    }
+    
+    // Clone the modal body to preserve exact structure and content
+    const clonedBody = modalBody.cloneNode(true);
+    
+    // Remove any buttons from the clone
+    clonedBody.querySelectorAll('button').forEach(btn => btn.remove());
+    
+    // Verify clone has content
+    const cloneCards = clonedBody.querySelectorAll('.card');
+    console.log('Cloned body has', cloneCards.length, 'cards');
+    if (cloneCards.length === 0) {
+      alert('Error: No content found in modal. Please ensure the TDS modal is properly loaded.');
+      if (downloadBtn && originalBtnText) {
+        downloadBtn.textContent = originalBtnText;
+        downloadBtn.disabled = false;
+      }
+      return;
+    }
+    
+    // Show loading state
+    const downloadBtn = this || event?.target || document.activeElement;
+    const originalBtnText = downloadBtn?.textContent;
+    if (downloadBtn && downloadBtn.tagName === 'BUTTON') {
+      downloadBtn.textContent = 'Generating PDF...';
+      downloadBtn.disabled = true;
+    }
+    
+    // Create a printable version - MUST be on-screen for html2canvas
+    const printContainer = document.createElement('div');
+    printContainer.id = 'pdf-print-container';
+    printContainer.style.cssText = `
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0.1);
+      width: 794px;
+      background: #ffffff;
+      padding: 18px;
+      font-family: Inter, system-ui, sans-serif;
+      color: #1e293b;
+      box-sizing: border-box;
+      opacity: 0;
+      pointer-events: none;
+      z-index: -9999;
+    `;
+    
+    // Create letterhead header with logo and company name
+    const letterhead = document.createElement('div');
+    letterhead.style.cssText = 'display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid #d4a019;';
+    
+    const logoDiv = document.createElement('div');
+    const logoImg = document.createElement('img');
+    logoImg.src = 'https://i.ibb.co/twLsyyG6/Untitled-design-20.png';
+    logoImg.alt = 'Amara Trading';
+    logoImg.style.cssText = 'height: 50px; width: auto; display: block;';
+    logoImg.crossOrigin = 'anonymous';
+    logoDiv.appendChild(logoImg);
+    letterhead.appendChild(logoDiv);
+    
+    // Preload logo image to ensure it's loaded
+    const imgLoadPromise = new Promise((resolve) => {
+      if (logoImg.complete && logoImg.naturalHeight !== 0) {
+        resolve();
+      } else {
+        logoImg.onload = () => {
+          console.log('Logo loaded successfully');
+          resolve();
+        };
+        logoImg.onerror = () => {
+          console.warn('Logo failed to load, continuing anyway');
+          resolve(); // Continue even if image fails
+        };
+        // Timeout after 2 seconds
+        setTimeout(resolve, 2000);
+      }
+    });
+    
+    const companyInfoDiv = document.createElement('div');
+    companyInfoDiv.style.cssText = 'text-align: right;';
+    const companyName = document.createElement('div');
+    companyName.textContent = 'Amara Trading';
+    companyName.style.cssText = 'margin: 0; font-size: 22px; font-weight: 900; color: #0b1b2b; letter-spacing: 0.5px;';
+    const companyTagline = document.createElement('div');
+    companyTagline.textContent = 'Commodities and Logistics';
+    companyTagline.style.cssText = 'margin: 2px 0 0 0; font-size: 12px; color: #667085; font-weight: 600;';
+    companyInfoDiv.appendChild(companyName);
+    companyInfoDiv.appendChild(companyTagline);
+    letterhead.appendChild(companyInfoDiv);
+    printContainer.appendChild(letterhead);
+    
+    // Create document title section
+    const titleSection = document.createElement('div');
+    titleSection.style.cssText = 'margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #e2e8f0;';
+    const titleH1 = document.createElement('h1');
+    titleH1.textContent = title;
+    titleH1.style.cssText = 'margin: 0; font-size: 20px; font-weight: 900; color: #0b1b2b; line-height: 1.2; text-align: center;';
+    titleSection.appendChild(titleH1);
+    printContainer.appendChild(titleSection);
+    
+    // Extract all cards from cloned body and append directly to container
+    // This avoids any wrapper div issues
+    const clonedCards = clonedBody.querySelectorAll('.card');
+    console.log('Found', clonedCards.length, 'cards in cloned body');
+    
+    if (clonedCards.length === 0) {
+      // Fallback: try to get cards directly from modalBody
+      const directCards = modalBody.querySelectorAll('.card');
+      console.log('Fallback: Found', directCards.length, 'cards directly in modalBody');
+      if (directCards.length === 0) {
+        alert('Error: No cards found in modal. Please ensure the TDS modal is open and contains data.');
+        if (downloadBtn && originalBtnText) {
+          downloadBtn.textContent = originalBtnText;
+          downloadBtn.disabled = false;
+        }
+        return;
+      }
+      // Use direct cards
+      const contentWrapper = document.createElement('div');
+      contentWrapper.style.cssText = 'overflow: visible !important; max-height: none !important; height: auto !important; width: 100% !important; padding: 0 !important; margin: 0 !important; display: block !important; visibility: visible !important; opacity: 1 !important;';
+      directCards.forEach(card => {
+        const cardClone = card.cloneNode(true);
+        cardClone.querySelectorAll('button').forEach(btn => btn.remove());
+        contentWrapper.appendChild(cardClone);
+      });
+      printContainer.appendChild(contentWrapper);
+    } else {
+      // Create a content wrapper
+      const contentWrapper = document.createElement('div');
+      contentWrapper.style.cssText = 'overflow: visible !important; max-height: none !important; height: auto !important; width: 100% !important; padding: 0 !important; margin: 0 !important; display: block !important; visibility: visible !important; opacity: 1 !important;';
+      
+      // Move all cards to the wrapper
+      clonedCards.forEach(card => {
+        const cardClone = card.cloneNode(true);
+        cardClone.querySelectorAll('button').forEach(btn => btn.remove());
+        contentWrapper.appendChild(cardClone);
+      });
+      
+      printContainer.appendChild(contentWrapper);
+    }
+    
+    // Verify content is in the container
+    const cardsInContainer = printContainer.querySelectorAll('.card');
+    console.log('Cards in printContainer after append:', cardsInContainer.length);
+    
+    if (cardsInContainer.length === 0) {
+      alert('Error: No cards found in PDF container. Please try again.');
+      if (downloadBtn && originalBtnText) {
+        downloadBtn.textContent = originalBtnText;
+        downloadBtn.disabled = false;
+      }
+      if (printContainer.parentNode) {
+        document.body.removeChild(printContainer);
+      }
+      return;
+    }
+    
+    // Immediately remove any max-height from all cards and their children
+    printContainer.querySelectorAll('*').forEach(el => {
+      if (el.style.maxHeight) el.style.maxHeight = 'none';
+      if (el.style.overflow === 'hidden' || el.style.overflow === 'auto') {
+        el.style.overflow = 'visible';
+      }
+      // Ensure visibility
+      el.style.visibility = 'visible';
+      el.style.opacity = '1';
+      if (el.style.display === 'none') {
+        el.style.display = '';
+      }
+    });
+    
+    // Create footer - ensure it's always visible and not cut off
+    const footer = document.createElement('div');
+    footer.style.cssText = 'margin-top: 8px; padding-top: 6px; padding-bottom: 8px; border-top: 1px solid #e2e8f0; text-align: center; font-size: 10px; color: #94a3b8; line-height: 1.4; position: relative; overflow: visible; page-break-inside: avoid !important;';
+    footer.innerHTML = `
+      <p style="margin: 0 0 3px 0;"><strong>Amara Trading</strong> | Commodities and Logistics</p>
+      <p style="margin: 0 0 2px 0;">Phone: +961 3 116 996 • +961 3 018 811</p>
+      <p style="margin: 0;">Email: contact@amaratrading.co</p>
+    `;
+    printContainer.appendChild(footer);
+    
+    // Append to body FIRST
+    document.body.appendChild(printContainer);
+    
+    // Now apply styles to the elements - slightly larger fonts but still compact
+    const cards = printContainer.querySelectorAll('.card');
+    cards.forEach(card => {
+      card.style.cssText = 'background: #ffffff !important; border: 1px solid #e2e8f0 !important; border-left: 3px solid #d4a019 !important; padding: 10px 12px !important; margin-bottom: 8px !important; border-radius: 6px !important; box-shadow: none !important; overflow: visible !important; height: auto !important; min-height: auto !important; page-break-inside: avoid !important;';
+    });
+    
+    const headings = printContainer.querySelectorAll('h3');
+    headings.forEach(h3 => {
+      h3.style.cssText = 'color: #0b1b2b !important; font-size: 15px !important; font-weight: 700 !important; margin-top: 0 !important; margin-bottom: 7px !important; line-height: 1.2 !important;';
+    });
+    
+    const tables = printContainer.querySelectorAll('table');
+    tables.forEach(table => {
+      table.style.cssText = 'width: 100% !important; border-collapse: collapse !important; margin-bottom: 5px !important; display: table !important; page-break-inside: avoid !important; font-size: 11px !important;';
+    });
+    
+    const tableHeaders = printContainer.querySelectorAll('thead th');
+    tableHeaders.forEach(th => {
+      th.style.cssText = 'background: #f8fafc !important; border-bottom: 1px solid #e2e8f0 !important; padding: 5px 7px !important; text-align: left !important; font-weight: 700 !important; font-size: 10px !important; color: #334155 !important; text-transform: uppercase !important; letter-spacing: 0.3px !important; line-height: 1.2 !important;';
+    });
+    
+    const tableCells = printContainer.querySelectorAll('tbody td');
+    tableCells.forEach(td => {
+      td.style.cssText = 'padding: 4px 7px !important; border-bottom: 1px solid #f1f5f9 !important; font-size: 11px !important; color: #475569 !important; line-height: 1.3 !important;';
+    });
+    
+    const tableRows = printContainer.querySelectorAll('tbody tr');
+    tableRows.forEach((tr, index) => {
+      tr.style.display = 'table-row';
+      tr.style.visibility = 'visible';
+      tr.style.height = 'auto';
+      if (index % 2 === 0) {
+        tr.style.background = '#fafbfc';
+      }
+    });
+    
+    // Ensure all table cells are visible
+    const allTableCells = printContainer.querySelectorAll('td, th');
+    allTableCells.forEach(cell => {
+      cell.style.display = 'table-cell';
+      cell.style.visibility = 'visible';
+      cell.style.height = 'auto';
+    });
+    
+    // Ensure tables are displayed as table
+    tables.forEach(table => {
+      table.style.display = 'table';
+      table.style.visibility = 'visible';
+      table.style.height = 'auto';
+    });
+    
+    // Remove overflow hidden from all divs and make them visible
+    const allDivs = printContainer.querySelectorAll('div');
+    allDivs.forEach(div => {
+      div.style.overflow = 'visible';
+      div.style.overflowX = 'visible';
+      div.style.overflowY = 'visible';
+      div.style.height = 'auto';
+      div.style.minHeight = 'auto';
+      div.style.maxHeight = 'none';
+    });
+    
+    const overflowDivs = printContainer.querySelectorAll('[style*="overflow"]');
+    overflowDivs.forEach(div => {
+      div.style.overflow = 'visible !important';
+      div.style.overflowX = 'visible !important';
+      div.style.overflowY = 'visible !important';
+      div.style.width = '100%';
+      div.style.height = 'auto';
+      div.style.minHeight = 'auto';
+      div.style.maxHeight = 'none';
+    });
+    
+    // Ensure modal-body is not clipped
+    const modalBodyDiv = printContainer.querySelector('.modal-body');
+    if (modalBodyDiv) {
+      modalBodyDiv.style.overflow = 'visible';
+      modalBodyDiv.style.maxHeight = 'none';
+      modalBodyDiv.style.height = 'auto';
+    }
+    
+    const grids = printContainer.querySelectorAll('[style*="grid-template-columns"]');
+    grids.forEach(grid => {
+      grid.style.cssText = 'display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; margin-bottom: 4px !important; page-break-inside: avoid !important;';
+    });
+    
+    // Ensure all text content is visible
+    const allElements = printContainer.querySelectorAll('*');
+    allElements.forEach(el => {
+      // Skip script and style tags
+      if (el.tagName === 'SCRIPT' || el.tagName === 'STYLE') return;
+      
+      const computedStyle = window.getComputedStyle(el);
+      if (computedStyle.display === 'none') {
+        // Try to preserve table structure
+        if (el.tagName === 'TABLE') el.style.display = 'table';
+        else if (el.tagName === 'TR') el.style.display = 'table-row';
+        else if (el.tagName === 'TD' || el.tagName === 'TH') el.style.display = 'table-cell';
+        else el.style.display = 'block';
+      }
+      if (computedStyle.visibility === 'hidden') {
+        el.style.visibility = 'visible';
+      }
+    });
+    
+    // Verify content
+    const cardCount = printContainer.querySelectorAll('.card').length;
+    console.log('Cards found:', cardCount);
+    console.log('Container HTML length:', printContainer.innerHTML.length);
+    
+    // Wait for logo and rendering then generate
+    imgLoadPromise.then(() => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          // Get accurate dimensions
+          const height = Math.max(
+            printContainer.scrollHeight,
+            printContainer.offsetHeight,
+            printContainer.clientHeight
+          );
+          const width = printContainer.offsetWidth || 794;
+          
+          console.log('Dimensions:', { 
+            width, 
+            height, 
+            scrollHeight: printContainer.scrollHeight,
+            offsetHeight: printContainer.offsetHeight,
+            clientHeight: printContainer.clientHeight
+          });
+          
+          // Check if we have all content
+          const allCards = printContainer.querySelectorAll('.card');
+          const allTables = printContainer.querySelectorAll('table');
+          console.log('Content check:', { cards: allCards.length, tables: allTables.length });
+          
+          if (!height || height < 500 || allCards.length < 4) {
+            alert('Error: Content not fully loaded. Found ' + allCards.length + ' cards. Expected 4. Please try again.');
+            if (downloadBtn && originalBtnText) {
+              downloadBtn.textContent = originalBtnText;
+              downloadBtn.disabled = false;
+            }
+            document.body.removeChild(printContainer);
+            return;
+          }
+          
+          // Verify cards are still present before making visible
+          const cardsBeforeVisible = printContainer.querySelectorAll('.card');
+          console.log('Cards before making visible:', cardsBeforeVisible.length);
+          
+          if (cardsBeforeVisible.length === 0) {
+            alert('Error: Cards disappeared from container. Please try again.');
+            if (downloadBtn && originalBtnText) {
+              downloadBtn.textContent = originalBtnText;
+              downloadBtn.disabled = false;
+            }
+            if (printContainer.parentNode) {
+              document.body.removeChild(printContainer);
+            }
+            return;
+          }
+          
+          // Make container visible for html2canvas - use transform instead of off-screen
+          // html2canvas needs element to be in DOM and technically visible
+          printContainer.style.position = 'fixed';
+          printContainer.style.left = '50%';
+          printContainer.style.top = '50%';
+          printContainer.style.transform = 'translate(-50%, -50%) scale(0.01)';
+          printContainer.style.opacity = '0.01'; // Very low but not 0 for html2canvas
+          printContainer.style.visibility = 'visible';
+          printContainer.style.pointerEvents = 'none';
+          printContainer.style.zIndex = '-9999';
+          
+          // Remove all height restrictions
+          printContainer.querySelectorAll('*').forEach(el => {
+            if (el.style.maxHeight) el.style.maxHeight = 'none';
+            if (el.style.overflow === 'hidden') el.style.overflow = 'visible';
+            if (el.style.height && el.style.height.includes('vh')) el.style.height = 'auto';
+            el.style.visibility = 'visible';
+            el.style.opacity = '1';
+          });
+          
+          // Set container to auto height first
+          printContainer.style.height = 'auto';
+          printContainer.style.minHeight = 'auto';
+          printContainer.style.maxHeight = 'none';
+          
+          // Force reflow multiple times to ensure layout
+          void printContainer.offsetHeight;
+          void printContainer.scrollHeight;
+          
+          // Force all content to be fully rendered and visible
+          printContainer.style.height = 'auto';
+          printContainer.style.minHeight = 'auto';
+          printContainer.style.maxHeight = 'none';
+          
+          // Force multiple reflows to ensure everything renders
+          void printContainer.offsetHeight;
+          void printContainer.scrollHeight;
+          void printContainer.clientHeight;
+          
+          // Final verification
+          const cardsAfterVisible = printContainer.querySelectorAll('.card');
+          console.log('Cards after making visible:', cardsAfterVisible.length);
+          cardsAfterVisible.forEach((card, idx) => {
+            const h3 = card.querySelector('h3');
+            console.log(`Card ${idx + 1} visible:`, h3?.textContent || 'No title', 'Height:', card.offsetHeight);
+          });
+          
+            // Wait longer for layout to settle
+            setTimeout(() => {
+              // Final check - ensure cards are still present
+              const finalCheck = printContainer.querySelectorAll('.card');
+              if (finalCheck.length === 0) {
+                alert('Error: Cards disappeared during preparation. Please try again.');
+                if (downloadBtn && originalBtnText) {
+                  downloadBtn.textContent = originalBtnText;
+                  downloadBtn.disabled = false;
+                }
+                if (printContainer.parentNode) {
+                  document.body.removeChild(printContainer);
+                }
+                return;
+              }
+              
+              // Calculate max height for ONE A4 page
+              // Reserve extra space for footer to ensure it's never cut off
+              const maxSinglePageHeight = 1020; // Reduced to leave more room for footer
+              
+              // Force a reflow to get accurate measurements including footer
+              void printContainer.offsetHeight;
+              void printContainer.scrollHeight;
+              
+              // Get accurate height including footer
+              const footer = printContainer.querySelector('div:last-child');
+              const footerHeight = footer ? footer.offsetHeight + 10 : 70; // Add 10px padding for safety
+              const scrollHeight = printContainer.scrollHeight;
+              const offsetHeight = printContainer.offsetHeight;
+              const clientHeight = printContainer.clientHeight;
+              const actualHeight = Math.max(scrollHeight, offsetHeight, clientHeight);
+              
+              console.log('Height calculation:', {
+                scrollHeight,
+                offsetHeight,
+                clientHeight,
+                actualHeight,
+                footerHeight,
+                maxSinglePageHeight
+              });
+              
+              // If content exceeds one page, scale down - but ensure footer fits
+              let pdfWidth = width;
+              let pdfHeight = actualHeight;
+              let scaleAdjustment = 1;
+              
+              // Reserve space for footer at bottom
+              const contentHeightWithoutFooter = actualHeight - footerHeight;
+              const maxContentHeight = maxSinglePageHeight - footerHeight;
+              
+              if (actualHeight > maxSinglePageHeight) {
+                // Scale based on content including footer
+                scaleAdjustment = maxSinglePageHeight / actualHeight;
+                pdfHeight = maxSinglePageHeight;
+                pdfWidth = width / scaleAdjustment;
+                console.log('Scaling down by', ((1 - scaleAdjustment) * 100).toFixed(1) + '%');
+              }
+              
+              // Ensure footer is visible and not cut off BEFORE setting height
+              if (footer) {
+                footer.style.display = 'block';
+                footer.style.visibility = 'visible';
+                footer.style.opacity = '1';
+                footer.style.position = 'relative';
+                footer.style.marginBottom = '0';
+                footer.style.marginTop = '8px';
+                footer.style.paddingBottom = '8px';
+                footer.style.overflow = 'visible';
+              }
+              
+              // Force reflow to get accurate measurements with footer
+              void printContainer.offsetHeight;
+              void printContainer.scrollHeight;
+              
+              // Get final height INCLUDING footer - use scrollHeight to ensure footer is included
+              const finalScrollHeight = printContainer.scrollHeight;
+              const finalOffsetHeight = printContainer.offsetHeight;
+              
+              // Use the actual scroll height to ensure footer is included
+              const finalHeight = Math.max(finalScrollHeight, finalOffsetHeight, pdfHeight);
+              
+              console.log('Final height calculation:', {
+                finalScrollHeight,
+                finalOffsetHeight,
+                calculatedPdfHeight: pdfHeight,
+                finalHeight,
+                footerHeight: footer?.offsetHeight,
+                footerExists: !!footer
+              });
+              
+              // Set explicit height to ensure footer is included - use actual scroll height
+              printContainer.style.height = finalHeight + 'px';
+              printContainer.style.minHeight = finalHeight + 'px';
+              printContainer.style.maxHeight = finalHeight + 'px';
+              printContainer.style.paddingBottom = '0'; // No extra padding, footer handles its own
+              
+              // Verify footer exists before capture
+              const footerCheck = printContainer.querySelector('div:last-child');
+              console.log('Footer check before capture:', {
+                footerExists: !!footerCheck,
+                footerText: footerCheck?.textContent?.substring(0, 50),
+                containerHeight: printContainer.offsetHeight,
+                containerScrollHeight: printContainer.scrollHeight,
+                footerHeight: footerCheck?.offsetHeight
+              });
+              
+              // Use html2canvas directly - capture full height including footer
+              html2canvas(printContainer, {
+                scale: 2,
+                useCORS: true,
+                logging: true, // Enable logging to debug
+                width: width,
+                height: finalHeight, // Use actual height including footer
+                windowWidth: width,
+                windowHeight: finalHeight, // Use actual height including footer
+                backgroundColor: '#ffffff',
+                allowTaint: true,
+                onclone: (clonedDoc) => {
+                  const cloned = clonedDoc.getElementById('pdf-print-container');
+                  if (cloned) {
+                    cloned.style.position = 'relative';
+                    cloned.style.transform = 'none';
+                    cloned.style.left = '0';
+                    cloned.style.top = '0';
+                    cloned.style.opacity = '1';
+                    cloned.style.visibility = 'visible';
+                    cloned.style.height = finalHeight + 'px'; // Use actual height
+                    cloned.style.minHeight = finalHeight + 'px';
+                    cloned.style.maxHeight = finalHeight + 'px';
+                    cloned.style.overflow = 'visible';
+                    
+                    // Ensure footer is visible in clone
+                    const clonedFooter = cloned.querySelector('div:last-child');
+                    if (clonedFooter) {
+                      clonedFooter.style.display = 'block';
+                      clonedFooter.style.visibility = 'visible';
+                      clonedFooter.style.opacity = '1';
+                      clonedFooter.style.position = 'relative';
+                      console.log('Footer in clone:', {
+                        exists: true,
+                        height: clonedFooter.offsetHeight,
+                        text: clonedFooter.textContent?.substring(0, 50)
+                      });
+                    } else {
+                      console.error('Footer NOT found in cloned document!');
+                    }
+                  }
+                }
+              }).then(canvas => {
+                // Verify canvas captured footer
+                console.log('Canvas dimensions:', {
+                  width: canvas.width,
+                  height: canvas.height,
+                  expectedHeight: finalHeight * 2 // scale 2, using finalHeight which includes footer
+                });
+                // Create PDF using jsPDF directly
+                const { jsPDF } = window.jspdf;
+                const imgData = canvas.toDataURL('image/jpeg', 0.98);
+                
+                // A4 dimensions in mm: 210 x 297
+                const pdfPageWidth = 210;
+                const pdfPageHeight = 297;
+                const imgWidth = pdfPageWidth - 10; // 5mm margins on each side (5mm left + 5mm right)
+                
+                // Calculate image height maintaining aspect ratio
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                
+                // Ensure single page - use full available height to include footer
+                const topMargin = 5; // 5mm top margin
+                const bottomMargin = 8; // 8mm bottom margin to ensure footer is visible
+                const maxImgHeight = pdfPageHeight - topMargin - bottomMargin;
+                
+                // Scale down if needed but preserve footer - scale proportionally
+                let finalImgHeight = imgHeight;
+                let finalImgWidth = imgWidth;
+                
+                if (imgHeight > maxImgHeight) {
+                  const scale = maxImgHeight / imgHeight;
+                  finalImgHeight = maxImgHeight;
+                  finalImgWidth = imgWidth * scale;
+                  console.log('Scaling image to fit:', { scale, finalImgHeight, finalImgWidth, originalHeight: imgHeight });
+                }
+                
+                const pdf = new jsPDF('portrait', 'mm', 'a4');
+                
+                // Center horizontally if scaled
+                const xPosition = (pdfPageWidth - finalImgWidth) / 2;
+                
+                // Add image with proper margins - ensure footer is included
+                // Use the full calculated height to include footer
+                pdf.addImage(imgData, 'JPEG', xPosition, topMargin, finalImgWidth, finalImgHeight);
+                
+                // Verify footer is in view
+                console.log('PDF dimensions:', {
+                  imgWidth,
+                  imgHeight,
+                  finalImgHeight,
+                  finalImgWidth,
+                  canvasHeight: canvas.height,
+                  canvasWidth: canvas.width,
+                  availableHeight: maxImgHeight,
+                  xPosition,
+                  pdfPageHeight: pdfPageHeight,
+                  usedHeight: topMargin + finalImgHeight,
+                  remainingSpace: pdfPageHeight - (topMargin + finalImgHeight)
+                });
+                
+                pdf.save(filename);
+                
+                // Cleanup
+                if (downloadBtn && originalBtnText) {
+                  downloadBtn.textContent = originalBtnText;
+                  downloadBtn.disabled = false;
+                }
+                setTimeout(() => {
+                  if (printContainer.parentNode) {
+                    document.body.removeChild(printContainer);
+                  }
+                }, 500);
+              }).catch(err => {
+                console.error('PDF Error:', err);
+                alert('Error generating PDF: ' + err.message);
+                if (downloadBtn && originalBtnText) {
+                  downloadBtn.textContent = originalBtnText;
+                  downloadBtn.disabled = false;
+                }
+                if (printContainer.parentNode) {
+                  document.body.removeChild(printContainer);
+                }
+              });
+            }, 300);
+        });
+      });
+    });
+  }
+  
+  // Attach download handlers
+  document.addEventListener('DOMContentLoaded', () => {
+    const downloadG4 = document.getElementById('downloadTdsG4');
+    const downloadG6 = document.getElementById('downloadTdsG6');
+    
+    if (downloadG4) {
+      downloadG4.addEventListener('click', function(e) {
+        e.stopPropagation();
+        generatePDF.call(this, 'tdsG6Overlay', 'Phosphate Rock Chemical Analysis (Type G4)', 'Amara-Phosphate-G4-TDS.pdf');
+      });
+    }
+    
+    if (downloadG6) {
+      downloadG6.addEventListener('click', function(e) {
+        e.stopPropagation();
+        generatePDF.call(this, 'tdsG4Overlay', 'Phosphate Rock Chemical Analysis (Type G6)', 'Amara-Phosphate-G6-TDS.pdf');
+      });
+    }
+  });
 </script>
 
 </body>
