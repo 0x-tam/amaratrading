@@ -1014,6 +1014,18 @@
           </div>
         </div>
         <div class="form-group">
+          <label for="qproduct">What are you interested in?</label>
+          <select id="qproduct" name="product">
+            <option value="">Select a category</option>
+            <option value="Petroleum & Energy Products">Petroleum &amp; Energy Products</option>
+            <option value="Sulphur & Minerals">Sulphur &amp; Minerals (incl. Phosphate Rock G4/G6)</option>
+            <option value="Industrial Raw Materials">Industrial Raw Materials</option>
+            <option value="Building Materials">Building Materials</option>
+            <option value="Commodities">Commodities (Zinc, Silica &amp; Other)</option>
+            <option value="General Inquiry">General Inquiry / Not Sure</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label for="qmessage">Message</label>
           <textarea id="qmessage" name="message" placeholder="How can we help?"></textarea>
         </div>
@@ -1205,15 +1217,16 @@ if (quoteForm) {
   quoteForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const fd = new FormData(quoteForm);
-    if (!fd.get('subject')) fd.set('subject', 'Website Inquiry');
     const name = (document.getElementById('qname').value || '').trim();
     const company = (document.getElementById('qcompany').value || '').trim();
     const email = (document.getElementById('qemail').value || '').trim();
     const phone = (document.getElementById('qphone').value || '').trim();
+    const product = (document.getElementById('qproduct').value || '').trim();
     const msg = (document.getElementById('qmessage').value || '').trim();
+    fd.set('subject', product ? `Website Inquiry — ${product}` : 'Website Inquiry');
     fd.set('from_name', name);
     fd.set('replyto', email);
-    fd.set('message', [`Name: ${name}`, `Company: ${company}`, `Email: ${email}`, `Phone: ${phone}`, '', msg].join('\n'));
+    fd.set('message', [`Name: ${name}`, `Company: ${company}`, `Email: ${email}`, `Phone: ${phone}`, `Interested in: ${product || 'Not specified'}`, '', msg].join('\n'));
 
     fetch('https://api.web3forms.com/submit', {
       method: 'POST',
