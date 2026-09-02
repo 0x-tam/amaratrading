@@ -129,13 +129,11 @@
   section:not(.hero):nth-child(even) .lead{color:#a9b7c8}
   section:not(.hero):nth-child(even) p{color:#c3ccd8}
   section:not(.hero):nth-child(even) ul li{color:#c3ccd8}
-  section:not(.hero):nth-child(even) .product-card-main{background:linear-gradient(165deg,#18293f,#122236);border-color:rgba(255,255,255,.08)}
-  section:not(.hero):nth-child(even) .product-card-main:hover{border-color:rgba(200,149,42,.4)}
+  section:not(.hero):nth-child(even) .product-featured,
+  section:not(.hero):nth-child(even) .product-cat{background:linear-gradient(165deg,#18293f,#122236);border-color:rgba(255,255,255,.08)}
+  section:not(.hero):nth-child(even) .product-featured:hover,
+  section:not(.hero):nth-child(even) .product-cat:hover{border-color:rgba(200,149,42,.4)}
   section:not(.hero):nth-child(even) h2{color:#fff !important}
-  section:not(.hero):nth-child(even) .product-specs-box{background:rgba(0,0,0,.22)}
-  section:not(.hero):nth-child(even) .product-description p{color:#a9b7c8}
-  section:not(.hero):nth-child(even) .spec-label{color:#8291a5}
-  section:not(.hero):nth-child(even) .spec-number{color:#fff}
   section:not(.hero):nth-child(even) .shipping-map{background:linear-gradient(165deg,#18293f,#122236);border-color:rgba(255,255,255,.08)}
   section:not(.hero):nth-child(even) .shipping-stats .stat-box{background:rgba(0,0,0,.22);border-color:rgba(255,255,255,.08)}
   section:not(.hero):nth-child(even) .stat-number{color:#fff}
@@ -160,6 +158,10 @@
   .media:hover img{transform:scale(1.06)}
   ul{margin:0 0 0 24px;padding:0;line-height:2}
   ul li{margin-bottom:10px}
+  .detail-list{list-style:none;margin:0;padding:0}
+  .detail-list li{position:relative;padding-left:20px;margin-bottom:10px;line-height:1.6}
+  .detail-list li::before{content:"";position:absolute;left:0;top:.7em;width:8px;height:1.5px;background:var(--gold)}
+  .detail-list li:last-child{margin-bottom:0}
   h3{font-size:1.4rem;color:#0b1b2b;margin:24px 0 12px;font-weight:800;letter-spacing:-.005em}
   .text h3{color:#0b1b2b}
   .muted{color:var(--muted)}
@@ -172,52 +174,47 @@
   .card p{margin-bottom:12px}
 
   /* Products */
-  .products-wrapper{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;align-items:stretch}
-  @media(min-width:768px){.products-wrapper{grid-template-columns:repeat(2,1fr);gap:24px}}
-  @media(max-width:767px){.products-wrapper{grid-template-columns:1fr}}
-  @media(min-width:1024px){.products-wrapper-categories{grid-template-columns:repeat(3,1fr);gap:26px}}
-  .products-wrapper .product-card-main:nth-child(1){transition-delay:0ms}
-  .products-wrapper .product-card-main:nth-child(2){transition-delay:70ms}
-  .products-wrapper .product-card-main:nth-child(3){transition-delay:140ms}
-  .products-wrapper .product-card-main:nth-child(4){transition-delay:210ms}
-  .products-wrapper .product-card-main:nth-child(5){transition-delay:280ms}
+  /* Shared category icon + heading row */
+  .product-cat-head{display:flex;align-items:center;gap:14px}
+  .product-cat-icon{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--gold-light),var(--gold));box-shadow:0 8px 18px -8px rgba(200,149,42,.55);flex-shrink:0}
+  .product-cat-icon svg{width:20px;height:20px;stroke:#1a1305}
+  .product-cat-head h3{margin:0;font-size:1.05rem;font-weight:800;color:var(--navy);letter-spacing:-.01em;line-height:1.3}
 
-  .product-card-main{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;transition:var(--transition);display:flex;flex-direction:column;box-shadow:var(--shadow-sm);position:relative}
-  .product-card-main:hover{box-shadow:var(--shadow-lg);transform:translateY(-5px);border-color:rgba(200,149,42,.35)}
-  .product-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--gold-light),var(--gold));box-shadow:0 10px 22px -10px rgba(200,149,42,.55);margin-bottom:20px;flex-shrink:0}
-  .product-icon svg{width:26px;height:26px;stroke:#1a1305}
-  .product-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px}
-  .product-card-header > div{display:flex;align-items:center;gap:12px}
-  .product-card-header h3{margin:0;font-size:1.2rem;font-weight:800;color:var(--navy);letter-spacing:-.01em}
-  .badge{background:var(--gold);color:#0b0f19;padding:5px 10px;border-radius:5px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
-  .product-card-header .btn{padding:8px 18px;font-size:0.8rem}
-  .btn-quote{background:#0b1b2b;color:#fff;padding:8px 18px;font-size:0.8rem}
-  .btn-quote:hover{background:#1a2938;box-shadow:0 4px 12px rgba(11,27,43,.3)}
-  .product-specs-box{background:#f7f8fa;border-radius:8px;padding:14px;margin-bottom:12px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;align-items:start}
-  .spec-item{display:flex;flex-direction:column;gap:6px}
-  .spec-label{color:var(--muted);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.3px;line-height:1.2}
-  .spec-label sub{font-size:0.65em;vertical-align:baseline;line-height:0;position:relative;bottom:-0.2em}
-  .spec-number{color:var(--navy);font-weight:700;font-size:0.95rem;line-height:1.3;white-space:nowrap}
-  .product-description{padding:0;flex-grow:1;display:flex;flex-direction:column;justify-content:flex-start}
-  .product-description p{margin:0;font-size:0.9rem;line-height:1.55;color:#1e293b}
-  .product-description p:last-child{margin-bottom:0}
-  .product-list{list-style:none;margin:0;padding:0;line-height:1.5}
-  .product-list li{position:relative;padding-left:20px;margin-bottom:11px;font-size:.92rem;color:#3a4a5c}
-  .product-list li::before{content:"";position:absolute;left:0;top:.55em;width:9px;height:1.5px;background:var(--gold)}
-  section:not(.hero):nth-child(even) .product-list li{color:#c3ccd8}
-  .product-card-main .btn{padding:8px 16px;font-size:0.8rem}
-  .product-actions{margin-top:20px;padding-top:20px;border-top:1px solid var(--line);display:flex;gap:10px;flex-wrap:wrap}
-  section:not(.hero):nth-child(even) .product-actions{border-top-color:rgba(255,255,255,.1)}
+  /* Dense tag list — no per-line bullet gutters, wraps to fill available width */
+  .product-tags{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+  .product-tags li{display:inline-flex;align-items:center;padding:7px 13px;border-radius:8px;background:rgba(11,27,43,.045);border:1px solid var(--line);font-size:.83rem;font-weight:600;color:#3a4a5c;line-height:1.3}
+  section:not(.hero):nth-child(even) .product-tags li{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);color:#dbe2ea}
+
+  /* Featured row — Sulphur & Minerals (has real TDS data), full width */
+  .product-featured{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm);transition:var(--transition);margin-bottom:20px}
+  .product-featured:hover{box-shadow:var(--shadow-md);border-color:rgba(200,149,42,.3)}
+  .product-cat-note{display:block;font-size:.82rem;color:var(--muted);font-weight:500;margin-top:2px}
+  section:not(.hero):nth-child(even) .product-cat-note{color:#8291a5}
+  .product-featured-body{margin-top:18px;padding-top:18px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  section:not(.hero):nth-child(even) .product-featured-body{border-top-color:rgba(255,255,255,.1)}
+  .product-featured-body .product-tags{flex:1;min-width:260px}
+  .product-actions{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0}
+
   .btn.secondary{display:inline-flex;align-items:center;gap:7px;background:transparent;color:var(--navy);padding:9px 16px;border:1.5px solid var(--line);border-radius:9px;font-weight:700;font-size:.82rem;box-shadow:none}
   .btn.secondary:hover{border-color:var(--gold);color:var(--gold-dim);background:rgba(200,149,42,.06);transform:translateY(-1px);box-shadow:none}
   section:not(.hero):nth-child(even) .btn.secondary{color:#fff;border-color:rgba(255,255,255,.22)}
   section:not(.hero):nth-child(even) .btn.secondary:hover{color:var(--gold-light);border-color:var(--gold-light);background:rgba(200,149,42,.1)}
-  /* Make products row single-column so cards span full width */
+
+  /* Remaining categories — even grid, each card sized to its own content */
+  .products-grid{display:grid;grid-template-columns:1fr;gap:16px;align-items:start}
+  @media(min-width:600px){.products-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1024px){.products-grid{grid-template-columns:repeat(4,1fr);gap:20px}}
+  .product-cat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow-sm);transition:var(--transition)}
+  .product-cat:hover{box-shadow:var(--shadow-md);transform:translateY(-3px);border-color:rgba(200,149,42,.3)}
+  .product-cat .product-tags{margin-top:16px}
+
   #products .row{grid-template-columns:1fr}
   #products .text{text-align:center}
   #products .eyebrow-sm{display:block}
   #products h2{margin-bottom:16px}
   #products .lead{max-width:640px;margin-left:auto;margin-right:auto}
+  #products .product-featured,
+  #products .products-grid{text-align:left}
   #products .media{margin-top:40px;max-width:900px;margin-left:auto;margin-right:auto;height:320px;overflow:hidden;border-radius:var(--radius-lg)}
   #products .media img{width:100%;height:100%;object-fit:cover;object-position:center}
 
@@ -325,16 +322,16 @@
     .media img{min-height:200px}
     .hero{min-height:52vh}
     header .menu a::after{display:none}
-    .products-wrapper{gap:14px}
-    .product-card-main{padding:22px 18px}
-    .product-icon{width:44px;height:44px;margin-bottom:14px}
-    .product-icon svg{width:22px;height:22px}
-    .product-card-header h3{font-size:1.05rem;margin-bottom:6px;line-height:1.25;font-weight:800;text-align:left}
-    .product-specs-box{padding:10px;grid-template-columns:1fr;gap:8px}
-    .spec-item{gap:4px}
-    .spec-label{font-size:0.78rem}
-    .spec-number{font-size:0.9rem;white-space:normal}
-    .product-description p{font-size:0.9rem;line-height:1.6}
+    .product-featured{padding:20px}
+    .product-cat{padding:18px}
+    .products-grid{gap:12px}
+    .product-cat-icon{width:36px;height:36px;border-radius:9px}
+    .product-cat-icon svg{width:18px;height:18px}
+    .product-cat-head h3{font-size:1rem}
+    .product-featured-body{flex-direction:column;align-items:stretch}
+    .product-featured-body .product-actions{width:100%}
+    .product-featured-body .product-actions .btn{flex:1;justify-content:center}
+    .product-tags li{font-size:.8rem;padding:6px 11px}
     .shipping-map{padding:10px}
     .map-container{padding:10px}
     .stat-number{font-size:1.45rem}
@@ -344,7 +341,7 @@
     .lead{color:#64748b;font-size:14.5px;text-align:left}
     .eyebrow{margin-bottom:14px}
     section .text h2 + .lead{margin-top:4px}
-    .row, .products-wrapper{overflow-x:hidden}
+    .row, .products-grid{overflow-x:hidden}
     #products .media{height:220px;margin-top:20px}
     #products .media img{height:100%}
     #products h2{margin-bottom:20px}
@@ -392,8 +389,8 @@
     .hero{min-height:46vh}
     .btn{padding:12px 16px;font-size:0.95rem}
     .scroll-top{right:78px;bottom:84px;width:42px;height:42px}
-    .product-card-main{padding:12px}
-    .product-specs-box{padding:8px}
+    .product-featured{padding:16px}
+    .product-cat{padding:16px}
     h2{font-size:24px}
     .text h3{font-size:18px}
   }
@@ -472,40 +469,27 @@
         <h2>Products &amp; Commodities</h2>
         <p class="lead">From energy and minerals to industrial and construction materials, Amara Trading sources and supplies a broad range of commodities across global markets. Below are the categories we currently trade — get in touch for specific grades, volumes, and documentation.</p>
 
-        <div class="products-wrapper products-wrapper-categories">
-          <div class="product-card-main reveal">
-            <div class="product-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c3.2 3.9 6 7.9 6 11.3a6 6 0 1 1-12 0c0-3.4 2.8-7.4 6-11.3Z"/><path d="M9.5 14.5a2.5 3.5 0 0 0 5 0"/></svg>
-            </div>
-            <div class="product-card-header">
-              <h3>Petroleum &amp; Energy Products</h3>
-            </div>
-            <div class="product-description" style="margin-top:14px">
-              <ul class="product-list">
-                <li>Fuel Oil</li>
-                <li>Bitumen / Asphalt</li>
-                <li>Other Fuel By-Products</li>
-                <li>Petroleum Products</li>
-                <li>Refined Petroleum Products</li>
-              </ul>
+        <div class="product-featured reveal">
+          <div class="product-cat-head">
+            <span class="product-cat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7.5v9L12 22l9-5.5v-9L12 2Z"/><path d="M12 2v20M3 7.5l9 5 9-5"/></svg>
+            </span>
+            <div>
+              <h3>Sulphur &amp; Minerals</h3>
+              <span class="product-cat-note">Includes Phosphate Rock G4 &amp; G6 — full technical data sheets available</span>
             </div>
           </div>
-
-          <div class="product-card-main reveal">
-            <div class="product-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7.5v9L12 22l9-5.5v-9L12 2Z"/><path d="M12 2v20M3 7.5l9 5 9-5"/></svg>
-            </div>
-            <div class="product-card-header">
-              <h3>Sulphur &amp; Minerals</h3>
-            </div>
-            <div class="product-description" style="margin-top:14px">
-              <ul class="product-list">
-                <li>Granular, Lump &amp; Bulk Sulphur</li>
-                <li>Jumbo Bag / FIBC Sulphur</li>
-                <li>Phosphate Rock (Grades G4 &amp; G6 — full TDS available)</li>
-                <li>Other Mineral Raw Materials &amp; Industrial Minerals</li>
-              </ul>
-            </div>
+          <div class="product-featured-body">
+            <ul class="product-tags">
+              <li>Granular Sulphur</li>
+              <li>Lump Sulphur</li>
+              <li>Bulk Sulphur</li>
+              <li>Jumbo Bag / FIBC Sulphur</li>
+              <li>Phosphate Rock (G4)</li>
+              <li>Phosphate Rock (G6)</li>
+              <li>Other Mineral Raw Materials</li>
+              <li>Industrial Minerals</li>
+            </ul>
             <div class="product-actions">
               <button type="button" class="btn secondary" id="btnTdsG4">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
@@ -517,54 +501,68 @@
               </button>
             </div>
           </div>
+        </div>
 
-          <div class="product-card-main reveal">
-            <div class="product-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V10l5-3v4l5-3v3l6-3.5V21H3Z"/><path d="M8 21v-4M13 21v-4M18 21v-4"/></svg>
+        <div class="products-grid">
+          <div class="product-cat reveal">
+            <div class="product-cat-head">
+              <span class="product-cat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c3.2 3.9 6 7.9 6 11.3a6 6 0 1 1-12 0c0-3.4 2.8-7.4 6-11.3Z"/><path d="M9.5 14.5a2.5 3.5 0 0 0 5 0"/></svg>
+              </span>
+              <h3>Petroleum &amp; Energy Products</h3>
             </div>
-            <div class="product-card-header">
+            <ul class="product-tags">
+              <li>Fuel Oil</li>
+              <li>Bitumen / Asphalt</li>
+              <li>Fuel By-Products</li>
+              <li>Petroleum Products</li>
+              <li>Refined Petroleum Products</li>
+            </ul>
+          </div>
+
+          <div class="product-cat reveal">
+            <div class="product-cat-head">
+              <span class="product-cat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V10l5-3v4l5-3v3l6-3.5V21H3Z"/><path d="M8 21v-4M13 21v-4M18 21v-4"/></svg>
+              </span>
               <h3>Industrial Raw Materials</h3>
             </div>
-            <div class="product-description" style="margin-top:14px">
-              <ul class="product-list">
-                <li>Industrial Chemicals &amp; Raw Materials</li>
-                <li>Petrochemical Raw Materials</li>
-                <li>Other Industrial Commodities</li>
-              </ul>
-            </div>
+            <ul class="product-tags">
+              <li>Industrial Chemicals</li>
+              <li>Industrial Raw Materials</li>
+              <li>Petrochemical Raw Materials</li>
+              <li>Other Industrial Commodities</li>
+            </ul>
           </div>
 
-          <div class="product-card-main reveal">
-            <div class="product-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="6" height="12"/><rect x="14" y="4" width="6" height="17"/><path d="M4 21h16M6.5 12h1M6.5 15h1M6.5 18h1M16.5 7h1M16.5 10h1M16.5 13h1M16.5 16h1"/></svg>
-            </div>
-            <div class="product-card-header">
+          <div class="product-cat reveal">
+            <div class="product-cat-head">
+              <span class="product-cat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="6" height="12"/><rect x="14" y="4" width="6" height="17"/><path d="M4 21h16M6.5 12h1M6.5 15h1M6.5 18h1M16.5 7h1M16.5 10h1M16.5 13h1M16.5 16h1"/></svg>
+              </span>
               <h3>Building Materials</h3>
             </div>
-            <div class="product-description" style="margin-top:14px">
-              <ul class="product-list">
-                <li>Construction Materials</li>
-                <li>Building Materials</li>
-                <li>Related Raw Materials</li>
-              </ul>
-            </div>
+            <ul class="product-tags">
+              <li>Construction Materials</li>
+              <li>Building Materials</li>
+              <li>Related Raw Materials</li>
+            </ul>
           </div>
 
-          <div class="product-card-main reveal">
-            <div class="product-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.8 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.8-3.8-9S9.5 5.6 12 3Z"/></svg>
-            </div>
-            <div class="product-card-header">
+          <div class="product-cat reveal">
+            <div class="product-cat-head">
+              <span class="product-cat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.8 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.8-3.8-9S9.5 5.6 12 3Z"/></svg>
+              </span>
               <h3>Commodities</h3>
             </div>
-            <div class="product-description" style="margin-top:14px">
-              <ul class="product-list">
-                <li>Zinc (SHG 99.995% and equivalent grades)</li>
-                <li>Silica (glass, foundry &amp; ceramics grade)</li>
-                <li>Agricultural Commodities &amp; Foodstuffs</li>
-                <li>Other Commodities on Request</li>
-              </ul>
-            </div>
+            <ul class="product-tags">
+              <li>Zinc (SHG 99.995%)</li>
+              <li>Silica (Glass / Foundry / Ceramics)</li>
+              <li>Agricultural Commodities</li>
+              <li>Foodstuffs</li>
+              <li>Other on Request</li>
+            </ul>
           </div>
         </div>
         <div style="margin-top:28px; display:flex; justify-content:center">
@@ -952,7 +950,7 @@
         <p>Typical vessel capacity: 20,000–40,000 tons per shipment.</p>
         
         <h3>Additional Offer Details</h3>
-        <ul class="product-list" style="margin-top:14px">
+        <ul class="detail-list" style="margin-top:14px">
           <li>Certificate of Origin issued by the relevant government authority.</li>
           <li>Site visits to the mine, port, and relevant authorities can be arranged post-contract.</li>
           <li>For phosphate rock shipments specifically: buyers must be fertilizer manufacturers or distributors and confirm agricultural end-use in writing, as required by Syrian export regulations. Terms for other commodities are confirmed per contract.</li>
