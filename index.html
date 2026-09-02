@@ -75,7 +75,7 @@
   @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}}
 
   /* Header */
-  header{backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);background:rgba(255,255,255,.78);border-bottom:1px solid rgba(11,27,43,.06);position:sticky;top:0;z-index:1000;transition:var(--transition);will-change:transform}
+  header{backdrop-filter:saturate(140%) blur(9px);-webkit-backdrop-filter:saturate(140%) blur(9px);background:rgba(255,255,255,.85);border-bottom:1px solid rgba(11,27,43,.06);position:sticky;top:0;z-index:1000;transition:transform .3s cubic-bezier(.22,.61,.36,1),background .3s ease,box-shadow .3s ease;will-change:transform}
   header.hide{transform:translateY(-100%)}
   header.scrolled{background:rgba(255,255,255,.92);box-shadow:0 1px 0 rgba(11,27,43,.06),0 12px 32px -16px rgba(11,27,43,.18)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:76px}
@@ -1140,6 +1140,11 @@ navLinks.forEach(link => {
 const header = document.querySelector('header');
 let lastY = window.pageYOffset;
 let ticking = false;
+// While a nav link is auto-scrolling the page to a section, suspend the
+// hide/show logic entirely (frame-by-frame direction checks during an
+// animated scroll are prone to 1px jitter right as the scroll settles,
+// which was flickering the header open/closed).
+let navScrollSuspendedUntil = 0;
 window.addEventListener('scroll', () => {
   const currentY = window.pageYOffset;
   if (!ticking) {
@@ -1147,10 +1152,15 @@ window.addEventListener('scroll', () => {
       const menuOpen = document.querySelector('.menu')?.classList.contains('active');
       // header shadow state
       if (currentY > 50) header.classList.add('scrolled'); else header.classList.remove('scrolled');
-      // hide on scroll down, show on scroll up; never hide near top or when menu open
-      if (!menuOpen && currentY > 120 && currentY > lastY) {
-        header.classList.add('hide');
-      } else {
+      const delta = currentY - lastY;
+      const suspended = performance.now() < navScrollSuspendedUntil;
+      // hide on scroll down, show on scroll up; ignore tiny sub-pixel deltas
+      // (animation jitter) and never hide near the top, with the menu open,
+      // or mid-navigation to an anchor link
+      if (!menuOpen && !suspended && currentY > 120 && Math.abs(delta) > 6) {
+        if (delta > 0) header.classList.add('hide');
+        else header.classList.remove('hide');
+      } else if (currentY <= 120 || suspended) {
         header.classList.remove('hide');
       }
       lastY = currentY;
@@ -1190,6 +1200,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       const headerEl = document.querySelector('header');
       const headerH = headerEl ? headerEl.offsetHeight : 0;
       const top = target.getBoundingClientRect().top + window.pageYOffset - headerH;
+      const distance = Math.abs(top - window.pageYOffset);
+      // Keep the header visible for the duration of the animated scroll,
+      // scaled to distance so short and long jumps both stay covered.
+      navScrollSuspendedUntil = performance.now() + Math.min(1600, Math.max(500, distance));
+      header.classList.remove('hide');
       window.scrollTo({ top, behavior: 'smooth' });
     }
   });
